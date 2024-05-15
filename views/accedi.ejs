@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/container.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/testo.css">
+    <title>Accedi</title>
+  </head>
+  
+  <body>
+    <%- include("header.ejs") %>
+    <div id="container">
+      <form id="loginForm" action="/accedi" method="post">
+        <fieldset>
+          <center><img src="/image/login.png" alt="Errore immagine login" id="log"></center>
+          <legend>Accedi</legend>
+          <table>
+            <tr>
+              <td>Username:</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="username" name="username" placeholder="Inserisci il tuo username" required></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="email" name="email" placeholder="Inserisci la tua email" required></td>
+            </tr>
+              <td>Password:</td>
+            </tr>
+            <tr>
+              <td><input type="password" id="password" name="password" placeholder="Inserisci la tua password" required></td>
+            </tr>
+          </table>
+          <input type="submit" name="invia" value="Accedi">
+          <br>
+          <a href="registrazione">Non hai un account?</a>
+        </fieldset>
+      </form>
+      <% if (message) { %>
+        <script>
+          alert("<%= message %>");
+        </script>
+      <% } %>
+    </div>
+  </body>
+  

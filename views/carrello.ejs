@@ -1,0 +1,39 @@
+<head>
+    <title>Carrello della spesa</title>
+    <link rel="stylesheet" href="/css/carrello.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/carrello.js"></script>
+</head>
+<body>
+    <link rel="stylesheet" href="/css/body2.css">
+    <%- include("header.ejs") %>
+
+    <h1>Carrello della spesa</h1>
+
+    <div id="carrello-container">
+        <div id="elenco"></div>
+    </div>
+
+    <hr>
+
+    <div id="link-container">
+        <nav>
+            <ul>
+                <li><a href="abbonamenti">Torna a fare shopping</a></li>
+                <li><a href="javascript:paga()">Paga ora</a></li>
+                <li><a href="javascript:svuota()">Elimina carello</a></li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        if (localStorage.carrello) {
+        carrello = JSON.parse(localStorage.carrello);
+        tabella();
+        totali();
+    } else {
+        document.getElementById('elenco').innerHTML = "<p>Il carrello è vuoto. Aggiungi almeno un prodotto per ordinare.</p>";
+    }
+    </script>
+
+</body>
+

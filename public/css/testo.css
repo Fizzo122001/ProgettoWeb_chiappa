@@ -1,0 +1,31 @@
+#loginForm input[type="text"],
+    #loginForm input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+
+    #loginForm input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #loginForm input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #log {
+      width: 40px;
+      height: 40px;
+    }
+
+    .error {
+      color: red;
+    }

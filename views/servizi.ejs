@@ -1,0 +1,50 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/header.css"> 
+    <link rel="stylesheet" href="/css/body.css">
+    <link rel="stylesheet" href="/css/servizi.css">
+    <link rel="stylesheet" href="/css/prod2.css">
+    <script src="/js/servizio.js"></script>
+    <title>Servizi</title>
+    
+</head>
+
+<body>
+    <%- include("header.ejs") %>
+    <div class="container">
+        <h2 class="page-title">Benvenuto coach quale servizio vuoi offrire oggi?</h2>
+        <div class="product-container">
+            <div class="product">
+            </div>
+            <div class="product-info">
+                <h2>Servizio personal trainer</h2>
+                <p>Offri la possibilità che un nostro cliente abbia un personal coach, in modo tale da migliorare più velocemnte</p>
+                <center><img src="/image/personal.jpg" alt="Errore immagine 1"></center>
+                <li><a href="javascript:offri('personal trainer')">Offri questo servizio</a></li>
+            </div>
+        </div>
+        <div class="product-container">
+            <div class="product">
+            </div>
+            <div class="product-info">
+                <h2>Servizio all'aperto</h2> 
+                <p>Offri la possibilità che un gruppo di clienti possa fare allenamento all'aperto con la tua supervisione</p>
+                <center><img src="/image/aperto.jpg" alt="Errore immagine 2"></center>
+                <li><a href="javascript:offri('palestra all\'aperto')">Offri questo servizio</a></li>
+            </div>
+        </div>
+        <div class="product-container">
+            <div class="product">
+            </div>
+            <div class="product-info">
+                <h2>Servizio di nutrizionista</h2> 
+                <p>Offri consulenza per far cambiare stile di vita ai nostri clienti per raggiungere obiettivi di benessere e salute ottimale.</p>
+                <center><img src="/image/dieta.jpg" alt="Errore immagine 3"></center>
+                <li><a href="javascript:offri('nutrizionista')">Offri questo servizio</a></li>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>

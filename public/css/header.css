@@ -1,0 +1,64 @@
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+header nav ul li b {
+    color: rgb(0, 55, 255);
+    text-decoration: none;
+}
+
+#carrello-link {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+
+}
+
+#carrello-icon {
+    opacity: 1;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+
+#search-bar {
+    display: none; 
+}
+#dettagli-abbonamento {
+    display: none; 
+    margin-top: 20px;
+}
+.carrello {
+    position: relative; 
+    padding-right: 25px; 
+}
+.close-icon {
+    position: absolute;
+    top: 5px; 
+    right: 25px;
+    cursor: pointer;
+}
+
+
+

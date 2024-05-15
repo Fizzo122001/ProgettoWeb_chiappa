@@ -1,0 +1,71 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/container.css">
+  <link rel="stylesheet" href="/css/testo.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+
+  <title>Registrazione</title>
+
+</head>
+
+<body>
+  <%- include("header.ejs") %>
+
+  <div id="container">
+    <form id="loginForm" action="/registrazione" method="post" onsubmit="return validateForm()">
+      <fieldset>
+        <legend>Registrati</legend>
+        <center><img src="/image/login.png" alt="Errore immagine login" id="log"></center>
+        <table>
+          <tr>
+            <td>Username:</td>
+          </tr>
+          <tr>
+            <td><input type="text" id="username" name="username" placeholder="Inserisci il tuo username" required></td>
+          </tr>
+          <tr>
+            <tr>
+              <tr>
+              <td>Email:</td>
+              </tr>
+              <td><input type="text" id="email" name="email" placeholder="Inserisci il tuo email" required></td>
+            </tr>
+            <tr>
+            <td>Data di nascita:</td>
+          </tr>
+          <tr>
+            <td><input type="text" id="birthdate" name="birthdate" placeholder="Seleziona la tua data di nascita" required></td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+          </tr>
+          <tr>
+            <td><input type="password" id="password" name="password" placeholder="Inserisci la tua password" required></td>
+          </tr>
+          <tr>
+            <td>Conferma Password:</td>
+          </tr>
+          <tr>
+            <td><input type="password" id="confirm_password" name="confirm_password" placeholder="Conferma la tua password" required></td>
+          </tr>
+        </table>
+        <input type="submit" name="invia" value="Registrarti">
+        <br>
+        <div id="password_error" class="error"></div>
+      </fieldset>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script src="js/calendario.js"></script>
+  <script src="js/validate.js"></script>
+  
+
+</body>
+
+
