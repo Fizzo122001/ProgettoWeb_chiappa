@@ -9,37 +9,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/carosello.css">
-    
+
     <style>
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; 
-            margin: 0; 
+            min-height: 100vh;
+            margin: 0;
         }
         .content {
             flex: 1;
-            padding-top: 20px; 
+            padding-top: 20px;
         }
-        /* Stile per il footer */
         .footer {
             text-align: center;
-            padding: 20px 0; /* Aggiunge spazio interno al footer */
+            padding: 20px 0;
+        }
+        .carousel-inner img {
+            max-inline-size: 600px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .carousel-container {
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body class="gradient-custom">
-    <%- include("header.ejs")%>
+    <%- include("header.ejs") %>
     <div class="container content">
-        <div class="row mt-5">
+        <div class="row align-items-center mt-5">
             <div class="col-lg-6">
                 <h1>Benvenuto alla PalestraFit</h1>
                 <p class="lead">La tua palestra di fiducia per raggiungere i tuoi obiettivi di fitness.</p>
                 <a href="/strumentazione" class="btn btn-primary">Scopri di più</a>
             </div>
             <div class="col-lg-6">
-                <img src="image/palestra.jpg" class="img-fluid" alt="Palestra">
+                <!-- Codice del carosello -->
+                <div id="carouselExampleAutoplaying" class="carousel slide carousel-container" data-bs-ride="carousel" data-bs-interval="6000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://content.rsggroup.com/image/upload/q_auto,f_auto/b_black,o_80/v1628621748/GoldsGym/Milano/Studio/GI1_4977-HDR" class="d-block w-100" alt="Errore">
+                            <div class="carousel-caption d-none d-md-block"></div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://content.rsggroup.com/image/upload/q_auto,f_auto/b_black,o_80/v1628621704/GoldsGym/Milano/Studio/GI1_4907-HDR" class="d-block w-100" alt="Errore">
+                            <div class="carousel-caption d-none d-md-block"></div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://content.rsggroup.com/image/upload/q_auto,f_auto/b_black,o_80/v1628621701/GoldsGym/Milano/Studio/GI1_4967-HDR-Modifica" class="d-block w-100" alt="Errore">
+                            <div class="carousel-caption d-none d-md-block"></div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://content.rsggroup.com/image/upload/q_auto,f_auto/b_black,o_80/v1628621716/GoldsGym/Milano/Studio/GI1_4892-HDR" class="d-block w-100" alt="Errore">
+                            <div class="carousel-caption d-none d-md-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fine codice del carosello -->
             </div>
         </div>
     </div>
