@@ -2,7 +2,12 @@
     margin: 50px auto;
     width: 800px; 
 }
+.carousel-control-prev, .carousel-control-next {
+margin-left: auto;
+margin-right: auto;
+}
 .carousel-item img {
-    max-width: 100%; 
+    max-width: 55%; 
     height: auto; 
+    margin: 0 auto;
 }
