@@ -1,11 +1,8 @@
 <head>
     <title>Carrello della spesa</title>
-    <link rel="stylesheet" href="/css/carrello.css">
-    <link rel="stylesheet" href="/css/header.css">
     <script src="/js/carrello.js"></script>
 </head>
 <body>
-    <link rel="stylesheet" href="/css/body2.css">
     <%- include("header.ejs") %>
 
     <h1>Carrello della spesa</h1>
@@ -34,6 +31,6 @@
         document.getElementById('elenco').innerHTML = "<p>Il carrello è vuoto. Aggiungi almeno un prodotto per ordinare.</p>";
     }
     </script>
-
+    <%- include ("footer.ejs") %>
 </body>
 

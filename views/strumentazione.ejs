@@ -1,9 +1,12 @@
+<!DOCTYPE html>
+<html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/header.css"> 
-    <link rel="stylesheet" href="/css/prod2.css">  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/sfondo.css">
     <title>Strumentazione</title>
     <style>
         .carousel-inner {
@@ -14,10 +17,11 @@
             max-width: 100%; 
             height: auto; 
         }
-
     </style>
 </head>
-<body>
+
+<body class="gradient-custom">
+    <!-- Include the header -->
     <%- include("header.ejs") %>
     <div class="container">
         <div class="page-title">Esplora le nostre attrezzature fitness, scorrendo il carosello</div>
@@ -28,7 +32,7 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Tapis roulant</h5>
                         <p>Prezzo: 5.00 euro/h</p>
-                        <a href="#" onclick="aggiungi(4, 'Tapis roulant', 5.00)">Aggiungi al carrello</a>
+                        <a href="#" onclick="aggiungi(4, 'Tapis roulant', 5.00)">Aggiungi al carrello</a> <!-- Restored original link -->
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -36,7 +40,7 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>cyclette</h5>
                         <p>Prezzo: 3.00 euro/h</p>
-                        <a href="#" onclick="aggiungi(5, 'Cyclette', 3.00)">Aggiungi al carrello</a>
+                        <a href="#" onclick="aggiungi(5, 'Cyclette', 3.00)">Aggiungi al carrello</a> <!-- Restored original link -->
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -44,11 +48,11 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Pesi</h5>
                         <p>Prezzo: 2.00 euro/h</p>
-
-                        <a href="#" onclick="aggiungi(6, 'Pesi', 2.00)">Aggiungi al carrello</a>
+                        <a href="#" onclick="aggiungi(6, 'Pesi', 2.00)">Aggiungi al carrello</a> <!-- Restored original link -->
                     </div>
                 </div>
             </div>
+            <!-- Carousel controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -59,6 +63,11 @@
             </button>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <!-- Link to Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include your custom JavaScript -->
     <script src="js/aggiungi.js"></script>
+    <%- include ("footer.ejs") %>
 </body>
+
+</html>

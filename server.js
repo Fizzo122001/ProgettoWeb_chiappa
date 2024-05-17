@@ -55,11 +55,11 @@ app.get('/registrazione', (req, res) => {
 });
 
 app.get('/servizi', (req, res) => {
-    if (req.session.loggedin && req.session.ruolo === 'coach') {
+    //if (req.session.loggedin && req.session.ruolo === 'coach') {
         res.render('servizi');
-    } else {
-        res.redirect('/accedi?alert=nonautorizzato');
-    }
+    //} else {
+        //res.redirect('/accedi?alert=nonautorizzato');
+    //}
 });
 
 app.get('/abbonamenti', (req, res) => {

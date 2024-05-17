@@ -1,109 +1,46 @@
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Header</title>
-</head>
-<body>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <header>
-    <nav>
-        <ul>
-            <% if (loggedin) { %>
-                <li><a href="/strumentazione">Strumentazione</a></li>
-                <li><a href="/abbonamenti">Abbonamenti</a></li>
-                <li><a href="/servizi">Servizi</a></li>
-                <li><a href="/contatti">Contatti</a></li>
-                <li id="carrello-link"><img src="/image/ricerca.png" alt="Carrello" id="carrello-icon" class="icon"></li>
-                <li id="carrello-link"><a href="/carrello"><img src="/image/carrello.png" alt="Carrello" id="carrello-icon" class="icon"></a></li>
-                <li><a href="/logout">Logout</a></li>
-            <% } else { %>
-                <li><a href="/accedi">Login</a></li>
-                <li><a href="/strumentazione">Strumentazione</a></li>
-                <li><a href="/abbonamenti">Abbonamenti</a></li>
-                <li><a href="/servizi">Servizi</a></li>
-                <li><a href="/contatti">Contatti</a></li>
-                <li id="carrello-link"><img src="/image/ricerca.png" alt="Carrello" id="carrello-icon" class="icon"></li>
-                <li id="carrello-link"><a href="/carrello"><img src="/image/carrello.png" alt="Carrello" id="carrello-icon" class="icon"></a></li>
-            <% } %>
-        </ul>
-    </nav>
-    <div id="search-bar">
-        <div class="carrello" onclick="closeSearch()">
-            <img src="/image/x.png" alt="Close" class="close-icon" width="20" height="20"> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">PalestraFit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/principale">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/strumentazione">Strumentazione</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/abbonamenti">Abbonamenti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/servizi">Servizi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contatti">Contatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carrello"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                    <li class="nav-item">
+                            <input class="form-control me-2" type="text" placeholder="Cerca sub/attrezzature" aria-label="Search">
+                    </li>
+                    <% if (loggedin) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/accedi">Login</a>
+                            </li>
+                            <% } %>
+                </ul>
+            </div>
         </div>
-        <form id="search-form">
-            <input type="text" id="search-input" name="q" placeholder="Cerca...">
-            <button type="submit">Cerca</button>
-        </form>
-    </div>
-    <div id="dettagli-abbonamento">
-        <h2 id="nome-abbonamento"></h2>
-        <p id="prezzo-abbonamento"></p>
-    </div>
+    </nav>
 </header>
-
-<script>
-function closeSearch() {
-    var searchBar = document.getElementById('search-bar');
-    var dettagliAbbonamento = document.getElementById('dettagli-abbonamento');
-    searchBar.style.display = 'none';
-    dettagliAbbonamento.style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    var searchLink = document.getElementById('carrello-link');
-    var searchBar = document.getElementById('search-bar');
-    var dettagliAbbonamento = document.getElementById('dettagli-abbonamento');
-
-    searchLink.addEventListener('click', function() {
-        var currentPage = window.location.pathname;
-        if (currentPage !== '/abbonamenti' && currentPage !== '/strumentazione' &&  currentPage !== '/contatti') {
-            searchBar.style.display = (searchBar.style.display === 'none') ? 'block' : 'none';
-            document.getElementById('search-input').focus();
-
-        }
-    });
-
-    document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        var searchText = document.getElementById('search-input').value.toLowerCase();
-        performSearch(searchText); 
-    });
-
-    function performSearch(searchText) {
-
-        if (searchText === 'abbonamento1') {
-            mostraDettagliAbbonamento('Abbonamento 1', '35.00 euro');
-        }
-        else if (searchText === 'abbonamento2') {
-            mostraDettagliAbbonamento('Abbonamento 2', '60.00 euro');
-        }
-        else if (searchText === 'abbonamento3') {
-            mostraDettagliAbbonamento('Abbonamento 3' , '100.00 euro');
-        } 
-        else if (searchText === 'tapisroulant') {
-            mostraDettagliAbbonamento('Tapis Roulant' , '5.00 euro/h');
-        } 
-        else if (searchText === 'cyclette') {
-            mostraDettagliAbbonamento('Cyclette' , '3.00 euro/h');
-        } 
-        else if (searchText === 'pesi') {
-            mostraDettagliAbbonamento('Pesi' , '2.00 euro/h');
-        } 
-        else {
-            console.log('Nessun dettaglio trovato per:', searchText);
-            dettagliAbbonamento.style.display = 'none';
-        }
-    }
-
-    function mostraDettagliAbbonamento(nome, prezzo) {
-        var nomeAbbonamento = document.getElementById('nome-abbonamento');
-        var prezzoAbbonamento = document.getElementById('prezzo-abbonamento');
-        nomeAbbonamento.textContent = nome;
-        prezzoAbbonamento.textContent = 'Prezzo: ' + prezzo;
-        dettagliAbbonamento.style.display = 'block'; 
-    }
-});
-</script>
-
-</body>
