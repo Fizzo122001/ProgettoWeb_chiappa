@@ -80,34 +80,5 @@ function paga() {
     }
 }
 
-function getUserEmail(req) {
-    if (req.session && req.session.email) {
-        return req.session.email;
-    } else {
-        return null;
-    }
-}
 
-function inviaOrdine(totale) {
-    if (localStorage.carrello) {
-        var userEmail = getUserEmail();
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/paga", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    alert("Ordine inviato con successo!");
-                    localStorage.removeItem('carrello'); 
-                    document.getElementById('elenco').innerHTML = "<p>Il carrello è stato svuotato</p>"; 
-                } else {
-                    alert("Si è verificato un errore durante l'invio dell'ordine.");
-                }
-            }
-        };
-        xhr.send(JSON.stringify({ email: userEmail, order: totale }));
-    } else {
-        alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare."); 
-    }
-}
 
