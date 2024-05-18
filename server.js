@@ -39,11 +39,11 @@ app.get('/principale', (req, res) => {
 });
 
 app.get('/carrello', (req, res) => {
-    if (res.locals.loggedin) {
+    //if (res.locals.loggedin) {
         res.render('carrello');
-    } else {
-        res.redirect('/accedi?alert=autenticati');
-    }
+    //} else {
+        //res.redirect('/accedi?alert=autenticati');
+    //}
 });
 
 app.get('/contatti', (req, res) => {
