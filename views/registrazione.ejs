@@ -17,7 +17,6 @@
     .login-container {
       margin-top: 100px;
     }
-    
   </style>
 
 </head>
@@ -63,26 +62,26 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-    <script src="js/calendario.js"></script>
-    <script>
-      function validateForm() {
-    var password = document.getElementById("password").value;
-    var confirm_password = document.getElementById("confirm_password").value;
+  <script src="js/calendario.js"></script>
+  <script>
+    function validateForm() {
+      var password = document.getElementById("password").value;
+      var confirm_password = document.getElementById("confirm_password").value;
 
-    if (password != confirm_password) {
-      document.getElementById("password_error").innerHTML = "Le password non corrispondono";
-      return false;
+      if (password != confirm_password) {
+        document.getElementById("password_error").innerHTML = "Le password non corrispondono";
+        return false;
+      }
+      if (password.length < 6) {
+        document.getElementById("password_error").innerHTML = "Sono necessari minimo 6 caratteri";
+        return false;
+      }
+      else
+        return true;
     }
-    if (password.length < 6) {
-      document.getElementById("password_error").innerHTML = "Sono necessari minimo 6 caratteri";
-      return false;
-    }
-    else
-      return true;
-  }
 
-</script>
-  
+  </script>
+
 </body>
 
 </html>
