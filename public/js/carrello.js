@@ -1,4 +1,4 @@
-var carrello = [];    
+var carrello = [];
 
 function inizializza() {
     if (localStorage.carrello) {
@@ -24,7 +24,7 @@ function aggiungi(cod, descrizione, prezzo) {
         carrello[indice].qnt++;
     }
     serializza();
-    alert("Prodotto aggiunto al carrello"); 
+    alert("Prodotto aggiunto al carrello");
 }
 
 function totali() {
@@ -39,44 +39,44 @@ function totali() {
     }
 
     document.getElementById('totale').textContent = totale.toFixed(2);
-    return totale;    
+    return totale;
 }
 
 function cambia(cella) {
-    var label = "q" + cella; 
+    var label = "q" + cella;
     var v = document.getElementById(label).value;
     carrello[cella].qnt = v;
-    serializza(); 
+    serializza();
     totali();
 }
 
 function tabella() {
-    var tableHTML = "<table border=1><th>Codice<th>Descrizione<th>Prezzo<th>Quantità/Ore<th>Totale";
+    var tableHTML = "<table class='table carrello-tabella' border='1'><thead><tr><th>Codice</th><th>Descrizione</th><th>Prezzo</th><th>Quantità/Ore</th><th>Totale</th></tr></thead><tbody>";
     for (var i = 0; i < carrello.length; i++) {
         var prodotto = carrello[i];
-        tableHTML += "<tr><td class=center>" + prodotto.codice;
+        tableHTML += "<tr><td class='center'>" + prodotto.codice;
         tableHTML += "<td>" + prodotto.descrizione;
-        tableHTML += "<td class=right>" + prodotto.prezzo.toFixed(2);
-        tableHTML += "<td><input onChange=cambia(" + i + ") class=center id=q" + i + " type=text size=4 value= " + prodotto.qnt + ">";
-        tableHTML += "<td class=right id=t" + i + ">&nbsp;</tr>"; 
+        tableHTML += "<td class='right'>" + prodotto.prezzo.toFixed(2);
+        tableHTML += "<td><input onChange='cambia(" + i + ")' class='center' id='q" + i + "' type='text' size='4' value='" + prodotto.qnt + "'>";
+        tableHTML += "<td class='right' id='t" + i + "'>&nbsp;</td></tr>";
     }
-    tableHTML += "<tr><td colspan=4 align=right>Importo Ordine<td class=right id=totale>&nbsp</table>";
-    
-    document.getElementById('elenco').innerHTML = tableHTML;            
+    tableHTML += "<tr><td colspan='4' class='right' align='right'>Importo Ordine</td><td class='right' id='totale'>&nbsp;</td></tr></tbody></table>";
+
+    document.getElementById('elenco').innerHTML = tableHTML;
 }
 
 function svuota() {
     localStorage.removeItem('carrello');
     carrello = [];
-    tabella(); 
+    tabella();
 }
 
 function paga() {
     if (localStorage.carrello) {
-        var totale = totali(); 
+        var totale = totali();
         inviaOrdine(totale);
     } else {
-        alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare."); 
+        alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
     }
 }
 

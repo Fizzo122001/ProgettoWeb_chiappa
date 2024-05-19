@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+   
         }
 
         #carrello-container {
@@ -49,11 +50,23 @@
         footer {
             margin-top: 20px;
             height: 115px;
-            position: fixed;
             bottom: 0;
             width: 100%;
 
         }
+
+        .carrello-tabella th, .carrello-tabella td {
+            padding: 15px; 
+        }
+
+        .carrello-tabella .center {
+            text-align: center;
+        }
+
+        .carrello-tabella .right {
+            text-align: right;
+        }
+        
     </style>
 </head>
 
@@ -73,8 +86,6 @@
             <div id="carrello-container">
                 <div id="elenco"></div>
             </div>
-
-            <hr>
 
             <div id="link-container" class="link-container">
                 <nav>
