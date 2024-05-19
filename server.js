@@ -66,9 +66,14 @@ app.get('/abbonamenti', (req, res) => {
     res.render('abbonamenti');
 });
 
-app.get('/strumentazione', (req, res) => {
-    res.render('strumentazione');
+app.get('/attrezzatura', (req, res) => {
+    res.render('attrezzatura');
 });
+
+app.get('/privacy', (req, res) => {
+    res.render('privacy');
+});
+
 
 app.get('/paga-ora', (req, res) => {
     res.render('paga-ora');

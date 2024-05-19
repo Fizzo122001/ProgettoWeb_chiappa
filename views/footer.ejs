@@ -1,5 +1,74 @@
-<footer class="bg-dark text-light text-center py-4 mt-5">
-    <div class="container">
-        <p>&copy; 2024 PalestraFit. Tutti i diritti riservati.</p>
+<style>
+    #destra {
+        text-align: left;
+    }
+
+    #sinistra {
+        text-align: right;
+        color: white;
+        margin-top: -25px;
+    }
+
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        margin-right: 5px;
+    }
+
+    #contatti {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0);
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        height: 100px;
+        margin-top: 20px;
+        margin: -10px;
+    }
+
+    .contact-link {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+
+    footer {
+        margin-top: 20px;
+    }
+</style>
+<footer class="bg-dark text-light text-center py-4 mt-5" style="height: 150px;">
+    <div class="container" id="destra">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <p>&copy; 2024 PalestraFit. Tutti i diritti riservati.</p>
+                <a href="/privacy" class="text-white">Leggi la normativa sulla privacy</a>
+            </div>
+            <div class="col-md-6" id="destra2">
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <a href="mailto:ciao@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope contact-icon"></i>
+                        </a>
+                        <div id="sinistra">
+                            <p>palestrafit@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <a href="tel:+393311435562" class="contact-link">
+                            <i class="fas fa-phone contact-icon"></i>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="https://www.instagram.com/" class="contact-link">
+                            <i class="fab fa-instagram contact-icon"></i>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="https://www.facebook.com/" class="contact-link">
+                            <i class="fab fa-facebook contact-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
