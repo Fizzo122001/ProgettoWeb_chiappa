@@ -128,3 +128,8 @@ body {
 img[src$="yoga.png"] {
     width: 120%;
 }
+
+.gradient-custom {
+    background: rgb(81, 79, 83)-linear-gradient(to right, rgb(194, 180, 208), rgb(87, 89, 94));
+    background: linear-gradient(to right, rgb(219, 219, 226), rgb(193, 196, 197));
+  }
