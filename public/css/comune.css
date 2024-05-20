@@ -10,6 +10,7 @@
 #pulsanti {
     margin-bottom: 20px;
 }
+
 .page-title2 {
     margin-top: 25px;
     margin-bottom: 25px;
@@ -55,8 +56,9 @@ body {
     text-align: center;
 }
 
-.carrello-tabella th, .carrello-tabella td {
-    padding: 15px; 
+.carrello-tabella th,
+.carrello-tabella td {
+    padding: 15px;
 }
 
 .carrello-tabella .center {
@@ -132,4 +134,13 @@ img[src$="yoga.png"] {
 .gradient-custom {
     background: rgb(81, 79, 83)-linear-gradient(to right, rgb(194, 180, 208), rgb(87, 89, 94));
     background: linear-gradient(to right, rgb(219, 219, 226), rgb(193, 196, 197));
-  }
+}
+
+footer {
+    margin-top: 20px;
+    width: 100%;
+    border-bottom: 0px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}

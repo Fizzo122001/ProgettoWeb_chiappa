@@ -1,9 +1,4 @@
 
-.carousel-inner {
-    margin: 50px auto;
-    width: 800px;
-}
-
 .carousel-control-prev,
 .carousel-control-next {
     margin-left: auto;
@@ -17,18 +12,24 @@
     border-radius: 50%;
 }
 
-.carousel-item.active {
-    display: flex;
+.carousel {
+    max-width: 60%;
+    margin: 40px auto 0 auto; 
 }
+
 
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 10px;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    border-radius: 2%;
     text-align: center;
     color: white;
+    max-width: 70%;
+    margin-top: 5%;
+
 }
+
+.carousel-caption p,h5 {
+    font-size: 1.5vw;
+}
+
+
