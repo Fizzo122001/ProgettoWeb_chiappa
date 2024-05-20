@@ -1,0 +1,118 @@
+html,
+body {
+    overflow-x: hidden;
+}
+
+
+/****** Navbar ******/
+/* Navbar */
+.navbar .form-control {
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .navbar .form-control {
+        width: auto;
+    }
+}
+
+/****** Carousel ******/
+.carousel-control-prev,
+.carousel-control-next {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 50%;
+}
+
+.carousel {
+    max-width: 60%;
+    margin: 40px auto 0 auto; 
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 2%;
+    text-align: center;
+    color: white;
+    max-width: 70%;
+    margin-top: 5%;
+
+}
+
+.carousel-caption p,h5 {
+    font-size: 1.5vw;
+}
+
+
+/****** Carrello ******/
+.carrello-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#carrello-container {
+    max-width: 100%;
+    text-align: center;
+    background-color: white;
+    border: 3px solid #ccc;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.carrello-tabella th,
+.carrello-tabella td {
+    padding: 15px;
+}
+
+.carrello-tabella .center {
+    text-align: center;
+}
+
+.carrello-tabella .right {
+    text-align: right;
+}
+
+
+/****** Footer ******/
+.contact-icon {
+    margin: 8 auto;
+    font-size: 1.5em;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+}
+
+
+/****** Other ******/
+.product-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 425px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+img[src$="yoga.png"] {
+    width: 120%;
+}
+
+.gradient-custom {
+    background: whitesmoke
+}
+
+.card {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.8);
+}
