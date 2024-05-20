@@ -1,0 +1,21 @@
+.card {
+    height: 340px;
+    width: 250px;
+
+}
+
+.card-container {
+
+    text-align: center;
+}
+
+.card-img-top {
+    height: 200px;
+    margin-top: 0;
+}
+
+.card-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}

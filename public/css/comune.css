@@ -1,0 +1,130 @@
+.btn-primary {
+    background-color: orange;
+}
+
+.login-container {
+    margin-top: 150px;
+    border: none;
+}
+
+#pulsanti {
+    margin-bottom: 20px;
+}
+.page-title2 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.carrello-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#carrello-container {
+    max-width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    background-color: white;
+    border: 3px solid #ccc;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+.link-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#titolo2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.carrello-tabella th, .carrello-tabella td {
+    padding: 15px; 
+}
+
+.carrello-tabella .center {
+    text-align: center;
+}
+
+.carrello-tabella .right {
+    text-align: right;
+}
+
+.product-info {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#google-map {
+    margin-top: 68px;
+}
+
+#destra {
+    text-align: left;
+}
+
+#sinistra {
+    text-align: right;
+    color: white;
+    margin-top: -25px;
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+}
+
+#contatti {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100px;
+    margin-top: 20px;
+    margin: -10px;
+}
+
+.contact-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding-top: 20px;
+}
+
+
+.product-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 425px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+img[src$="yoga.png"] {
+    width: 120%;
+}

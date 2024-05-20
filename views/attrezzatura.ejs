@@ -7,324 +7,278 @@
     <title>Attrezzatura</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/sfondo.css">
-    <link rel="stylesheet" href="css/carosello.css">
+    <link rel="stylesheet" href="/css/sfondo.css">
+    <link rel="stylesheet" href="/css/comune.css">
+    <link rel="stylesheet" href="/css/carta.css">
     <style>
-        .page-title {
-            margin-top: 25px;
-        }
-
-        .btn-primary {
-            background-color: orange;
-        }
-
-
-        .card-container {
-            margin-top: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: black;
-            border-radius: 50%;
-        }
 
         footer {
             margin-top: 20px;
             height: 115px;
-            position: fixed;
-            bottom: 0;
             width: 100%;
-
         }
 
-        .card {
-            height: 340px;
-            width: 250px;
-
+        .card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px; /* aggiungi margine sopra il wrapper se necessario */
+            margin-bottom: 30px; /* aggiungi margine sotto il wrapper se necessario */
         }
 
-        .card-container {
-            margin-right: 20px;
-            text-align: center;
-        }
 
+        .card-body {
+            text-align: center; /* Centra il testo all'interno del corpo della carta */
+        }
 
         .card-img-top {
-            height: 200px;
-
+            max-height: 250px; /* Imposta l'altezza massima dell'immagine della carta */
+            object-fit: cover; /* Fai in modo che l'immagine copra l'intera area */
         }
+
+        .card-text {
+            margin-bottom: 1rem; /* Aggiunge uno spazio inferiore al testo nella carta */
+        }
+
+        
     </style>
 </head>
 
 <body class="gradient-custom">
     <%- include("header.ejs") %>
         <div class="container">
-            <div class="page-title text-center">
-                <h4>Esplora le nostre attrezzature fitness, scorrendo il carosello </h4>
-            </div>
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/tapis.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Tapis roulant</h5>
-                                            <p class="card-text">Prezzo: 5.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(4, 'tapis roulant', 5.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/cyclette.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Cyclette</h5>
-                                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(5, 'cyclette', 3.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/pesi.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Pesi</h5>
-                                            <p class="card-text">Prezzo: 2.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(6, 'pesi', 2.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="carousel-item">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/palla.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Palla</h5>
-                                            <p class="card-text">Prezzo: 1.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(7, 'palla', 1.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/manubri.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Manubri</h5>
-                                            <p class="card-text">Prezzo: 4.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(8, 'manubri', 4.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/panca.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Panca</h5>
-                                            <p class="card-text">Prezzo: 2.50 euro/h</p>
-                                            <a href="#" onclick="aggiungi(9, 'panca', 2.50)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/dualFit.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero"> Dual Fit</h5>
-                                            <p class="card-text">Prezzo: 3.50 euro/h</p>
-                                            <a href="#" onclick="aggiungi(10, 'dualfit', 3.50)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/Cable-station.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Cable station</h5>
-                                            <p class="card-text">Prezzo: 4.50 euro/h</p>
-                                            <a href="#" onclick="aggiungi(11, 'Cable-station', 4.50)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/Cable-tower.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Cable tower</h5>
-                                            <p class="card-text">Prezzo: 6.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(12, 'cable-tower', 6.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-              
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/vario.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Excite Vario</h5>
-                                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(13, 'Excite Vario', 3.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/elastici.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Elastici</h5>
-                                            <p class="card-text">Prezzo 1.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(14, 'elastici', 1.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/leg-extension.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Leg extension</h5>
-                                            <p class="card-text">Prezzo: 5.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(15, 'leg-extension', 5.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/flexability-anterior.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Flexability anterior</h5>
-                                            <p class="card-text">Prezzo: 4.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(16, 'flexability-anterior', 4.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/flexability-posterior.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Flexability posterior</h5>
-                                            <p class="card-text">Prezzo: 4.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(17, 'flexability-posterior', 4.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/mycycling.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Mycycling</h5>
-                                            <p class="card-text">Prezzo: 1.50 euro/h</p>
-                                            <a href="#" onclick="aggiungi(18, 'mycycling', 1.50)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="container card-container">
-                            <div class="row justify-content-center">
-    
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/speed-ladder.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Speed ladder</h5>
-                                            <p class="card-text">Prezzo: 1.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(19, 'speed-ladder', 1.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/mobility-ball.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Mobility ball</h5>
-                                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                                            <a href="#" onclick="aggiungi(20, 'mobiity-ball', 3.00)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img src="/image/jump-rope.png" class="card-img-top mt-5" alt="Errore">
-                                        <div class="card-body">
-                                            <h5 class="card-title elemento-nero">Jump rope</h5>
-                                            <p class="card-text">Prezzo: 2.50 euro/h</p>
-                                            <a href="#" onclick="aggiungi(21, 'jump-rope', 2.50)"
-                                                class="btn btn-primary">Aggiungi al carrello</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+            <div class="page-title2 text-center">
+                <h4>Esplora le nostre attrezzature fitness</h4>
             </div>
         </div>
-        <!-- Link to Bootstrap JS -->
+        <div class="card-wrapper">
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/tapis.png" class="card-img-top" style="width: 90%;" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Tapis roulant</h5>
+                        <p class="card-text">Prezzo: 5.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(4, 'tapis roulant', 5.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/cyclette.png" class="card-img-top" style="width: 90%;" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Cyclette</h5>
+                        <p class="card-text">Prezzo: 3.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(5, 'cyclette', 3.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/pesi.png" class="card-img-top" style="width: 82%; margin-left: 30px;" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Pesi</h5>
+                        <p class="card-text">Prezzo: 2.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(6, 'pesi', 2.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/palla.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Palla</h5>
+                        <p class="card-text">Prezzo: 1.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(7, 'palla', 1.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/manubri.png" class="card-img-top" style="width: 80%;margin-left: 30px;" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Manubri</h5>
+                        <p class="card-text">Prezzo: 4.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(8, 'manubri', 4.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/panca.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Panca</h5>
+                        <p class="card-text">Prezzo: 2.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(9, 'panca', 2.50)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/dualFit.png" class="card-img-top" style="width: 90%; margin-left:20px;" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Dual Fit</h5>
+                        <p class="card-text">Prezzo: 3.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(10, 'dualfit', 3.50)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/Cable-station.png" class="card-img-top" style="width: 88%;margin-left:22px" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Cable station</h5>
+                        <p class="card-text">Prezzo: 4.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(11, 'Cable-station', 4.50)" class="btn btn-primary">Aggiungi
+                            al carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/Cable-tower.png" class="card-img-top" style="width: 95%; margin-left:10px" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Cable tower</h5>
+                        <p class="card-text">Prezzo: 6.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(12, 'cable-tower', 6.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/vario.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Excite Vario</h5>
+                        <p class="card-text">Prezzo: 3.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(13, 'Excite Vario', 3.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/elastici.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Elastici</h5>
+                        <p class="card-text">Prezzo 1.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(14, 'elastici', 1.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/leg-extension.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Leg extension</h5>
+                        <p class="card-text">Prezzo: 3.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(15, 'leg-extension', 3.00)" class="btn btn-primary">Aggiungi
+                            al carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/flexability-anterior.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Flexability anterior</h5>
+                        <p class="card-text">Prezzo: 4.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(16, 'flexability-anterior', 4.00)"
+                            class="btn btn-primary">Aggiungi al carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/flexability-posterior.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Flexability posterior</h5>
+                        <p class="card-text">Prezzo: 4.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(17, 'flexability-posterior', 4.00)"
+                            class="btn btn-primary">Aggiungi al carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/mycycling.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Mycycling</h5>
+                        <p class="card-text">Prezzo: 1.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(18, 'mycycling', 1.50)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/speed-ladder.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Speed ladder</h5>
+                        <p class="card-text">Prezzo: 1.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(19, 'speed-ladder', 1.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/mobility-ball.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Mobility ball</h5>
+                        <p class="card-text">Prezzo: 3.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(20, 'mobility-ball', 3.00)" class="btn btn-primary">Aggiungi
+                            al carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/jump-rope.png" class="card-img-top" style="width: 85%; margin-left:25px" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Jump rope</h5>
+                        <p class="card-text">Prezzo: 2.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(21, 'jump-rope', 2.50)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/multistation.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Multistation</h5>
+                        <p class="card-text">Prezzo: 10.00 euro/h</p>
+                        <a href="#" onclick="aggiungi(22, 'multistation', 10.00)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex justify-content-center">
+                <div class="card h-100">
+                    <img src="/image/panca-piana.png" class="card-img-top" alt="Errore">
+                    <div class="card-body">
+                        <h5 class="card-title elemento-nero">Panca piana</h5>
+                        <p class="card-text">Prezzo: 2.50 euro/h</p>
+                        <a href="#" onclick="aggiungi(23, 'panca piana', 2.50)" class="btn btn-primary">Aggiungi al
+                            carrello</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
         <%- include("footer.ejs") %>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
