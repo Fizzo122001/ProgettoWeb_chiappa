@@ -1,191 +1,95 @@
-const express = require('express');
-const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-const session = require('express-session');
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config(); // load .env file
+}
+const express = require("express");
+const path = require("path");
+const sqlite3 = require("sqlite3").verbose();
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("express-flash");
+const morgan = require("morgan");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const port = 3000;
+
+// Imposta il motore di visualizzazione EJS
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
-const dbPath = path.resolve(__dirname, 'my.db');
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Errore durante la connessione al database', err.message);
-        throw err;
+// Configurazione della sessione
+app.use(
+    session({
+        secret: process.env.TOKEN_KEY,
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(morgan("tiny"));
+
+
+// Passport Local Strategy
+app.use(passport.session());
+
+// user authentication
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+}, async function (email, password, done) {
+    try {
+        const user = await db.findUserByEmail(email);
+        // user not found
+        if (!user) return done(null, false);
+        // hashing password
+        bcrypt.compare(password, user.password, function (err, result) {
+            if (err) return done(err);
+            // password matched
+            if (result) return done(null, user);
+            // password mismatch
+            else return done(null, false);
+        });
+    } catch (err) {
+        // log error
+        console.error("Error finding user by email:", err);
+        // database error
+        return done(err);
     }
-    console.log('Connesso al database SQLite');
-});
-
-app.use(session({
-    secret: 'supersegreto',
-    resave: false,
-    saveUninitialized: true
 }));
 
-app.use((req, res, next) => {
-    res.locals.loggedin = req.session.loggedin || false;
-    res.locals.email = req.session.email || null;
-    next();
+//INSERT INTO utente VALUES email,username,data_nascita,password 
+// user serialization
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
 });
 
-app.get('/', (req, res) => {
-    res.render('principale');
-});
-
-app.get('/principale', (req, res) => {
-    res.render('principale');
-});
-
-app.get('/carrello', (req, res) => {
-    //if (res.locals.loggedin) {
-        res.render('carrello');
-    //} else {
-        //res.redirect('/accedi?alert=autenticati');
-    //}
-});
-
-app.get('/contatti', (req, res) => {
-    res.render('contatti');
-});
-
-app.get('/registrazione', (req, res) => {
-    res.render('registrazione');
-});
-
-app.get('/servizi', (req, res) => {
-    //if (req.session.loggedin && req.session.ruolo === 'coach') {
-        res.render('servizi');
-    //} else {
-        //res.redirect('/accedi?alert=nonautorizzato');
-    //}
-});
-
-app.get('/abbonamenti', (req, res) => {
-    res.render('abbonamenti');
-});
-
-app.get('/attrezzatura', (req, res) => {
-    res.render('attrezzatura');
-});
-
-app.get('/privacy', (req, res) => {
-    res.render('privacy');
-});
-
-
-app.get('/paga-ora', (req, res) => {
-    res.render('paga-ora');
-});
-
-app.get('/accedi', (req, res) => {
-    const { alert } = req.query;
-    let message;
-    if (alert === 'nonautorizzato') {
-        message = 'Devi essere un coach per accedere a questa pagina.';
-    } else {
-        message = alert ? 'Autenticati per accedere al carrello.' : null;
-    }
-    res.render('accedi', { message: message });
-});
-
-app.get('/registrato', (req, res) => {
-    if (!res.locals.loggedin) {
-        return res.redirect('/accedi');
-    }
-    res.render('registrato');
-});
-
-
-app.post('/accedi', (req, res) => {
-    const { username, password, email } = req.body;
-    const sqlUtente = 'SELECT email, username FROM utente WHERE username = ? AND password = ? AND email = ?';
-    const sqlCoach = 'SELECT email, username FROM coach WHERE username = ? AND password = ? AND email = ?';
-
-    db.get(sqlUtente, [username, password, email], (err, rowUtente) => {
-        if (err) {
-            throw err;
-        }
-        if (rowUtente) {
-            req.session.loggedin = true;
-            req.session.email = email;
-            res.redirect('/carrello');
-        } else {
-            db.get(sqlCoach, [username, password, email], (err, rowCoach) => {
-                if (err) {
-                    throw err;
-                }
-                if (rowCoach) {
-                    req.session.loggedin = true;
-                    req.session.email = email;
-                    req.session.ruolo = 'coach';
-                    res.redirect('/servizi');
-                } else {
-                    res.render('accedi', { message: 'Credenziali non valide. Riprova.' });
-                }
-            });
-        }
-    });
-});
-
-app.post('/registrazione', (req, res) => {
-    const { username, password, birthdate, email } = req.body;
-    const sqlCheckUsername = 'SELECT * FROM utente WHERE username = ?';
-    const sqlInsertUtente = 'INSERT INTO utente (username, password, data_nascita, email) VALUES (?, ?, ?, ?)';
-
-    db.get(sqlCheckUsername, [username], (err, row) => {
-        if (err) {
-            console.error(err.message);
-            res.render('registrazione', { message: 'Si è verificato un errore durante la registrazione. Riprova.' });
-        }
-        else {
-            db.run(sqlInsertUtente, [username, password, birthdate, email], function (err) {
-                if (err) {
-                    console.error(err.message);
-                    res.render('registrazione', { message: 'Si è verificato un errore durante la registrazione. Riprova.' });
-                } else {
-                    req.session.loggedin = true;
-                    req.session.email = email;
-                    res.redirect('/registrato');
-                }
-            });
-        }
-    });
-});
-
-app.post('/paga', (req, res) => {
-    if (req.session.loggedin && req.session.email) {
-        const userEmail = req.session.email;
-        const order = req.body.order; 
-
-        const sqlInsertOrder = 'INSERT INTO ordini (utente, prezzo_ordine) VALUES (?, ?)';
-        db.run(sqlInsertOrder, [userEmail, order], function(err) {
-            if (err) {
-                console.error('Errore durante l\'inserimento dell\'ordine:', err.message);
-                res.sendStatus(500);
-                return;
-            } else {
-                res.sendStatus(200);
-            }
-        });
-    } else {
-        res.sendStatus(401);
+// user deserialization
+passport.deserializeUser(async function (id, done) {
+    try {
+        const user = await db.findUserById(id);
+        // user found
+        done(null, user);
+    } catch (err) {
+        // log error
+        console.error("Error finding user by id:", err);
+        // pass error to Passport 
+        done(err);
     }
 });
 
-app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('Errore durante il logout:', err);
-            res.sendStatus(500);
-            return;
-        } else {
-            res.redirect('/principale');
-        }
-    });
+
+app.get("/privacy", (req, res) => {
+    res.render("privacy");
 });
 
+
+// Avvio del server
 app.listen(port, () => {
     console.log(`Server in esecuzione su http://localhost:${port}`);
 });
