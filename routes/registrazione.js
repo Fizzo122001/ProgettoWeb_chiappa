@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/registrazione", (req, res) => {
+    if (!res.locals.loggedin) {
+        res.render("accedi");
+    }
     res.render("registrazione");
 });
 
@@ -15,7 +18,9 @@ router.post("/registrazione", async (req, res) => {
             console.error("Errore durante l'inserimento dell'utente:", err.message);
             res.render("registrazione", { message: "Si è verificato un errore durante la registrazione. Riprova." });
         } else {
-            res.redirect("/principale");
+            res.redirect("/");
         }
     });
 });
+
+module.exports = router;

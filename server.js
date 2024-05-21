@@ -1,95 +1,101 @@
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config(); // load .env file
 }
+
 const express = require("express");
 const path = require("path");
-const sqlite3 = require("sqlite3").verbose();
 const session = require("express-session");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const flash = require("express-flash");
 const morgan = require("morgan");
-const bcrypt = require("bcrypt");
 
+// Login and db
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
+const DataBase = require("./database");
+const db = new DataBase();
+
+// Server settings
 const app = express();
 const port = 3000;
 
-// Imposta il motore di visualizzazione EJS
+const principaleRouter = require("./routes/principale");
+const abbonamentiRouter = require("./routes/abbonamenti");
+const accediRouter = require("./routes/accedi");
+const logoutRouter = require("./routes/logout");
+const registrazioneRouter = require("./routes/registrazione");
+const attrezzaturaRouter = require("./routes/attrezzatura");
+const contattiRouter = require("./routes/contatti");
+const serviziRouter = require("./routes/servizi");
+
+// Passport sessions
+app.use(
+    session({
+        secret: "miamadresposata",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express server settings
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Configurazione della sessione
-app.use(
-    session({
-        secret: process.env.TOKEN_KEY,
-        resave: false,
-        saveUninitialized: false,
-    })
-);
+app.use("/", principaleRouter);
+app.use("/", abbonamentiRouter);
+app.use("/", accediRouter);
+app.use("/", logoutRouter);
+app.use("/", registrazioneRouter);
+app.use("/", attrezzaturaRouter);
+app.use("/", contattiRouter);
+app.use("/", serviziRouter);
 
+// app.use(morgan("tiny"));
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(morgan("tiny"));
 
-
-// Passport Local Strategy
-app.use(passport.session());
-
-// user authentication
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, async function (email, password, done) {
     try {
         const user = await db.findUserByEmail(email);
-        // user not found
         if (!user) return done(null, false);
-        // hashing password
+        
         bcrypt.compare(password, user.password, function (err, result) {
             if (err) return done(err);
-            // password matched
             if (result) return done(null, user);
-            // password mismatch
             else return done(null, false);
         });
     } catch (err) {
-        // log error
         console.error("Error finding user by email:", err);
-        // database error
         return done(err);
     }
 }));
 
-//INSERT INTO utente VALUES email,username,data_nascita,password 
-// user serialization
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user.email);
 });
 
-// user deserialization
-passport.deserializeUser(async function (id, done) {
+passport.deserializeUser(async function (email, done) {
     try {
-        const user = await db.findUserById(id);
-        // user found
+        const user = await db.findUserByEmail(email);
         done(null, user);
     } catch (err) {
-        // log error
-        console.error("Error finding user by id:", err);
-        // pass error to Passport 
+        console.error("Error finding user by email:", err);
         done(err);
     }
 });
 
-
 app.get("/privacy", (req, res) => {
-    res.render("privacy");
+    res.render("privacy", {
+        authenticated: req.isAuthenticated()
+    });
 });
 
-
-// Avvio del server
 app.listen(port, () => {
     console.log(`Server in esecuzione su http://localhost:${port}`);
 });

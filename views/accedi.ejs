@@ -15,36 +15,37 @@
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header text-center bg-transparent">
                         <h4>Accedi</h4>
                     </div>
                     <div class="card-body">
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password" required>
-                        </div>
-                        <!-- Mostra il messaggio di errore se presente -->
-                        <% if (message) { %>
+                        <form action="/accedi" method="POST">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Enter email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required>
+                            </div>
+                            <!-- Mostra il messaggio di errore se presente -->
+                            <% if (message) { %>
                             <div class="alert alert-danger" role="alert">
                                 <%= message %>
                             </div>
                             <% } %>
-                                <div class="text-center">
-                                    <div class="container" id="pulsanti">
-                                        <button type="submit" class="btn btn-warning">Accedi</button>
-                                        <button type="button" class="btn btn-warning"
-                                            onclick="window.location.href='/registrazione'">Registrati</button>
-                                        <a href="/principale" class="btn btn-warning">Torna alla Home</a>
-                                    </div>
+                            <div class="text-center">
+                                <div class="container" id="pulsanti">
+                                    <button type="submit" class="btn btn-warning">Accedi</button>
+                                    <button type="button" class="btn btn-warning"
+                                        onclick="window.location.href='/registrazione'">Registrati</button>
+                                    <a href="/" class="btn btn-warning">Torna alla Home</a>
                                 </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

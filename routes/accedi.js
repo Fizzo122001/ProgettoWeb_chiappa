@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require("passport");
 const router = express.Router();
 
 router.get("/accedi", (req, res) => {
@@ -28,7 +29,9 @@ router.post("/accedi", (req, res, next) => {
                 return next(err);
             }
             console.log("Login avvenuto con successo:", user.email);
-            return res.redirect("/principale");
+            return res.redirect("/");
         });
     })(req, res, next);
 });
+
+module.exports = router;
