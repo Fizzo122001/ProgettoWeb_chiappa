@@ -1,26 +1,25 @@
 const express = require('express');
+const bcrypt = require("bcrypt");
 const router = express.Router();
+const DataBase = require("../models/db");
+const db = new DataBase();
 
 router.get("/registrazione", (req, res) => {
-    if (!res.locals.loggedin) {
-        res.render("accedi");
-    }
     res.render("registrazione");
 });
 
 router.post("/registrazione", async (req, res) => {
-    const { email, password, birthdate } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const sqlInsertUtente = "INSERT INTO utente (email, password, data_nascita) VALUES (?, ?, ?)";
-
-    db.run(sqlInsertUtente, [email, hashedPassword, birthdate], function (err) {
-        if (err) {
-            console.error("Errore durante l'inserimento dell'utente:", err.message);
-            res.render("registrazione", { message: "Si è verificato un errore durante la registrazione. Riprova." });
-        } else {
-            res.redirect("/");
-        }
-    });
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        await db.addNewUser(
+            req.body, 
+            hashedPassword
+        );
+        res.redirect("/accedi");
+    } catch (error) {
+        console.log("Error while registering: ", error);
+        res.redirect("/registrazione");
+    }
 });
 
 module.exports = router;

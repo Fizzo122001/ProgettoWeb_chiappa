@@ -12,7 +12,7 @@ const morgan = require("morgan");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-const DataBase = require("./database");
+const DataBase = require("./models/db");
 const db = new DataBase();
 
 // Server settings
