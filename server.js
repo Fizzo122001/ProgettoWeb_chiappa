@@ -27,6 +27,7 @@ const registrazioneRouter = require("./routes/registrazione");
 const attrezzaturaRouter = require("./routes/attrezzatura");
 const contattiRouter = require("./routes/contatti");
 const serviziRouter = require("./routes/servizi");
+const carrelloRouter = require("./routes/carrello");
 
 // Passport sessions
 app.use(
@@ -53,6 +54,7 @@ app.use("/", registrazioneRouter);
 app.use("/", attrezzaturaRouter);
 app.use("/", contattiRouter);
 app.use("/", serviziRouter);
+app.use("/", carrelloRouter);
 
 // app.use(morgan("tiny"));
 app.use(flash());

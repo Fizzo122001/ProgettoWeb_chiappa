@@ -15,7 +15,7 @@ router.post("/registrazione", async (req, res) => {
             req.body, 
             hashedPassword
         );
-        res.redirect("/accedi");
+        res.redirect("/principale");
     } catch (error) {
         console.log("Error while registering: ", error);
         res.redirect("/registrazione");

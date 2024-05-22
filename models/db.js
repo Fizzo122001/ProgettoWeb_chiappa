@@ -1,26 +1,32 @@
 const sqlite3 = require("sqlite3").verbose();
-let db;
 
 class DataBase {
-    open() {
-        db = new sqlite3.Database("/my.db", sqlite3.OPEN_READWRITE, (err) => {
-            if (err) throw console.error(err.message);
+    constructor() {
+        this.db = new sqlite3.Database("my.db", sqlite3.OPEN_READWRITE, (err) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log("Connesso al database SQLite.");
+            }
         });
     }
 
     close() {
-        db.close((err) => {
-            if (err) throw console.error(err.message);
+        this.db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log("Connessione al database chiusa.");
+            }
         });
     }
 
     addNewUser(newUser, hashedPassword) {
+        const sql = `INSERT INTO utente(email, username, password, data_nascita, coach)
+                     VALUES(?, ?, ?, ?, ?)`;
+
         return new Promise((resolve, reject) => {
-            const sql = `INSERT INTO utente(email, username, password, data_nascita, coach)
-                    VALUES(?, ?, ?, ?, ?)`;
-            
-            this.open();
-            db.run(
+            this.db.run(
                 sql,
                 [
                     newUser.email,
@@ -29,25 +35,28 @@ class DataBase {
                     newUser.birthday,
                     0
                 ],
-                (err, row) => {
-                    if (err) throw reject(err);
-                    resolve(row);
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ id: this.lastID });
+                    }
                 }
             );
-            this.close();
         });
     }
 
     findUserByEmail(email) {
-        return new Promise((resolve, reject) => {
-            const sql = `SELECT * FROM utente WHERE email = ?`;
+        const sql = `SELECT * FROM utente WHERE email = ?`;
 
-            this.open();
-            db.get(sql, [email], (err, row) => {
-                if (err) throw reject(err);
-                resolve(row);
+        return new Promise((resolve, reject) => {
+            this.db.get(sql, [email], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
             });
-            this.close();
         });
     }
 }

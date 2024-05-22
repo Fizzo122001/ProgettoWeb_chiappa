@@ -26,22 +26,24 @@
               </div>
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci username" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci username"
+                  required>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Inserisci password" required>
+                <input type="password" class="form-control" id="password" name="password"
+                  placeholder="Inserisci password" required>
               </div>
               <div class="mb-3">
                 <label for="confirm_password" class="form-label">Conferma Password</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Conferma password" required>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                  placeholder="Conferma password" required>
               </div>
               <div class="mb-3">
                 <label for="birthday" class="form-label">Data di Nascita</label>
-                <input type="text" class="form-control" id="birthday" name="birthday" placeholder="AAAA-MM-GG" readonly>
+                <input type="date" class="form-control" id="birthday" name="birthday">
               </div>
               <div class="text-center">
-                <a href="/accedi" class="btn btn-warning">Accedi</a>
                 <button type="submit" class="btn btn-warning">Registrati</button>
                 <a href="/" class="btn btn-warning">Torna alla Home</a>
               </div>
@@ -53,7 +55,6 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
   <script src="/js/calendario.js"></script>
   <script>
     function validateForm() {
@@ -70,7 +71,7 @@
       }
       return true;
     }
-    
+
   </script>
 
 </body>
