@@ -7,17 +7,22 @@
             <%= title %>
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
         <style>
             .product {
                 margin-bottom: 2rem;
             }
+
         </style>
 </head>
 
-<body>
-    <header>
-        <%- include('header') %>
-    </header>
+<body class="gradient-custom">
+    <%- include("header.ejs" ,{
+        authenticated,
+        title,
+        prodotti,
+        coach: 0
+    }) %>
     <main>
         <div class="text-center mt-4 mb-4">
             <h4>Esplora le nostre attrezzature fitness</h4>

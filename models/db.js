@@ -46,18 +46,37 @@ class DataBase {
         });
     }
 
-    findUserByEmail(email) {
-        const sql = `SELECT * FROM utente WHERE email = ?`;
+    findUserByEmail(email, coachOnly = false) {
+        let sql = `SELECT * FROM utente WHERE email = ?`;
+        const params = [email];
+
+        if (coachOnly) {
+            sql += ` AND coach = 1`;
+        }
 
         return new Promise((resolve, reject) => {
-            this.db.get(sql, [email], (err, row) => {
+            this.db.get(sql, params, (err, row) => {
                 if (err) {
                     reject(err);
                 } else {
                     resolve(row);
                 }
             });
+        });
+    }
 
+    foundCoach() {
+        const sql = `SELECT * FROM utente WHERE coach = ?`;
+        const coachValue = 1; 
+
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [coachValue], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
         });
     }
 

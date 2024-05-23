@@ -18,7 +18,7 @@ router.get("/attrezzatura", async (req, res) => {
         res.render("attrezzatura", {
             authenticated: req.isAuthenticated(),
             title: "Attrezzatura",
-            prodotti: prodotti
+            prodotti: prodotti,
         });
     } catch (error) {
         console.error('Errore durante il recupero dei prodotti:', error);

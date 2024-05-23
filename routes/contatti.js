@@ -4,7 +4,7 @@ const router = express.Router();
 router.get("/contatti", (req, res) => {
     res.render("contatti", {
         authenticated: req.isAuthenticated(),
-        title: "Contatti"
+        title: "Contatti",
     });
 });
 

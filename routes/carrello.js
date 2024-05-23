@@ -9,7 +9,7 @@ router.get("/carrello", (req, res) => {
     if (req.isAuthenticated()) {
         res.render("carrello", {
             authenticated: req.isAuthenticated(),
-            title: "Carrello"
+            title: "Carrello",
         });
     } else {
         let message;

@@ -4,7 +4,12 @@
 <%- include("head.ejs") %>
 
 <body class="gradient-custom d-flex flex-column min-vh-100">
-    <%- include("header.ejs") %>
+    <%- include("header.ejs" ,{
+        authenticated,
+        title,
+        coach: 0
+   
+    }) %>
         <div class="container carrello-wrapper flex-grow-1 text-center">
             <h4>Carrello della spesa</h4>
             <p>

@@ -4,7 +4,7 @@ const router = express.Router();
 router.get("/abbonamenti", (req, res) => {
     res.render("abbonamenti", {
         authenticated: req.isAuthenticated(),
-        title: "Abbonamenti"
+        title: "Abbonamenti",
     });
 });
 
