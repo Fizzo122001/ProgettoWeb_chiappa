@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const DataBase = require("../models/db");
-const db = new DataBase();
+
 
 router.get("/registrazione", (req, res) => {
     res.render("registrazione", {title: "Registrazione"});

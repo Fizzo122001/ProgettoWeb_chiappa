@@ -4,23 +4,26 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 
 router.get("/attrezzatura", async (req, res) => {
-    let attrezzatura, prodotti;
-
     try {
-        attrezzatura = req.query["attrezzatura"];
+        let attrezzatura = req.query["attrezzatura"];
+        let prodotti = [];
 
-        if(attrezzatura)
+        // Verifica se è presente un parametro di ricerca nella richiesta
+        if (attrezzatura) {
             prodotti = await db.findProductsByName(attrezzatura);
+        } else {
+            prodotti = await db.getAllProducts();
+        }
 
+        res.render("attrezzatura", {
+            authenticated: req.isAuthenticated(),
+            title: "Attrezzatura",
+            prodotti: prodotti
+        });
     } catch (error) {
-        console.log("Errore: " + error);
+        console.error('Errore durante il recupero dei prodotti:', error);
+        res.status(500).send('Errore durante il recupero dei prodotti.');
     }
-
-    res.render("attrezzatura", {
-        authenticated: req.isAuthenticated(),
-        title: "Attrezzatura",
-        prodotti: prodotti
-    });
 });
 
 module.exports = router;

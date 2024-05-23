@@ -1,264 +1,50 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<%- include("head.ejs") %>
+<head>
+    <%- include('head') %>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .product {
+                margin-bottom: 2rem;
+            }
+        </style>
+</head>
 
-<body class="gradient-custom">
-    <%- include("header.ejs") %>
-        <div class="container mb-5">
-            <div class="text-center my-4">
-                <h4>Esplora le nostre attrezzature fitness</h4>
-            </div>
-            <% if(prodotti !== undefined) { %>
-                <div class="row g-4">
-                    <% prodotti.forEach(function(prod) { %>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="/image/tapis.png" class="card-img-top" alt="Errore">
-                                <div class="card-body">
-                                    <h5 class="card-title elemento-nero"><%= prod.nome %></h5>
-                                    <p class="card-text">Prezzo: <%= prod.prezzo %> euro/h</p>
-                                    <button onclick="aggiungi(4, 'tapis roulant', 5.00)" class="btn btn-warning">Aggiungi al
-                                        carrello</button>
-                                </div>
+<body>
+    <header>
+        <%- include('header') %>
+    </header>
+    <main>
+        <div class="text-center mt-4 mb-4">
+            <h4>Esplora le nostre attrezzature fitness</h4>
+        </div>
+        <div class="container">
+            <div class="row">
+                <% prodotti.forEach(function(product) { %>
+                    <div class="col-md-3">
+                        <div class="product card">
+                            <img class="card-img-top" src="/image/<%= product.immagine %>" alt="<%= product.nome %>">
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <%= product.nome %>
+                                </h2>
+                                <p class="card-text">Prezzo: €<%= product.prezzo.toFixed(2) %>
+                                </p>
+                                <a href="#" class="btn btn-warning">Aggiungi al carrello</a>
                             </div>
                         </div>
+                    </div>
                     <% }); %>
-                </div>
-                <% } else { %>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/tapis.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Tapis roulant</h5>
-                            <p class="card-text">Prezzo: 5.00 euro/h</p>
-                            <button onclick="aggiungi(4, 'tapis roulant', 5.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/cyclette.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Cyclette</h5>
-                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                            <button onclick="aggiungi(5, 'cyclette', 3.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/pesi.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Pesi</h5>
-                            <p class="card-text">Prezzo: 2.00 euro/h</p>
-                            <button onclick="aggiungi(6, 'pesi', 2.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/palla.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Palla</h5>
-                            <p class="card-text">Prezzo: 1.00 euro/h</p>
-                            <button onclick="aggiungi(7, 'palla', 1.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/manubri.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Manubri</h5>
-                            <p class="card-text">Prezzo: 4.00 euro/h</p>
-                            <button onclick="aggiungi(8, 'manubri', 4.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/panca.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Panca</h5>
-                            <p class="card-text">Prezzo: 2.50 euro/h</p>
-                            <button onclick="aggiungi(9, 'panca', 2.50)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/dualFit.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Dual Fit</h5>
-                            <p class="card-text">Prezzo: 3.50 euro/h</p>
-                            <button onclick="aggiungi(10, 'dualfit', 3.50)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/Cable-station.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Cable station</h5>
-                            <p class="card-text">Prezzo: 4.50 euro/h</p>
-                            <button onclick="aggiungi(11, 'Cable-station', 4.50)" class="btn btn-warning">Aggiungi
-                                al carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/Cable-tower.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Cable tower</h5>
-                            <p class="card-text">Prezzo: 6.00 euro/h</p>
-                            <button onclick="aggiungi(12, 'cable-tower', 6.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/vario.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Excite Vario</h5>
-                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                            <button onclick="aggiungi(13, 'Excite Vario', 3.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/elastici.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Elastici</h5>
-                            <p class="card-text">Prezzo 1.00 euro/h</p>
-                            <button onclick="aggiungi(14, 'elastici', 1.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/leg-extension.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Leg extension</h5>
-                            <p class="card-text">Prezzo 4.00 euro/h</p>
-                            <button onclick="aggiungi(15, 'leg-extension', 4.00)" class="btn btn-warning">Aggiungi
-                                al carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="/image/flexability-anterior.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Flexability Anterior</h5>
-                            <p class="card-text">Prezzo 2.50 euro/h</p>
-                            <button onclick="aggiungi(16, 'flexability anterior', 2.50)"
-                                class="btn btn-warning">Aggiungi al carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/flexability-posterior.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Flexability posterior</h5>
-                            <p class="card-text">Prezzo: 4.00 euro/h</p>
-                            <button onclick="aggiungi(17, 'flexability-posterior', 4.00)"
-                                class="btn btn-warning">Aggiungi al carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/mycycling.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Mycycling</h5>
-                            <p class="card-text">Prezzo: 1.50 euro/h</p>
-                            <button onclick="aggiungi(18, 'mycycling', 1.50)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/speed-ladder.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Speed ladder</h5>
-                            <p class="card-text">Prezzo: 1.00 euro/h</p>
-                            <button onclick="aggiungi(19, 'speed-ladder', 1.00)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/mobility-ball.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Mobility ball</h5>
-                            <p class="card-text">Prezzo: 3.00 euro/h</p>
-                            <button onclick="aggiungi(20, 'mobility-ball', 3.00)" class="btn btn-warning">Aggiungi
-                                al carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/jump-rope.png" class="card-img-top" style="width: 80%; margin-left:25px; margin-top: 20%;"
-                            alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Jump rope</h5>
-                            <p class="card-text">Prezzo: 2.50 euro/h</p>
-                            <button onclick="aggiungi(21, 'jump-rope', 2.50)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/multistation.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Multistation</h5>
-                            <p class="card-text">Prezzo: 10.00 euro/h</p>
-                            <button onclick="aggiungi(22, 'multistation', 10.00)" class="btn btn-warning">Aggiungi
-                                al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex justify-content-center">
-                    <div class="card h-100">
-                        <img src="/image/panca-piana.png" class="card-img-top" alt="Errore">
-                        <div class="card-body">
-                            <h5 class="card-title elemento-nero">Panca piana</h5>
-                            <p class="card-text">Prezzo: 2.50 euro/h</p>
-                            <button onclick="aggiungi(23, 'panca piana', 2.50)" class="btn btn-warning">Aggiungi al
-                                carrello</button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <% } %>
         </div>
-        <%- include("footer.ejs") %>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="js/aggiungi.js"></script>
+    </main>
+    <footer>
+        <%- include('footer') %>
+    </footer>
 </body>
 
 </html>

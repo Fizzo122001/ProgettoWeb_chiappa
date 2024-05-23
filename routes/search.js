@@ -3,6 +3,7 @@ const router = express.Router();
 const DataBase = require("../models/db");
 const db = new DataBase();
 
+
 router.get('/search', async (req, res) => {
     try {
         const name = req.query.name.trim();

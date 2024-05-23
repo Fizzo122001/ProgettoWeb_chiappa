@@ -95,13 +95,8 @@ passport.deserializeUser(async function (email, done) {
 
 app.get("/privacy", (req, res) => {
     res.render("privacy", {
-        authenticated: req.isAuthenticated()
-    });
-});
-
-app.get("/risultati", (req, res) => {
-    res.render("risultati", {
-        authenticated: req.isAuthenticated()
+        authenticated: req.isAuthenticated(),
+        title: "Privacy policy"
     });
 });
 
