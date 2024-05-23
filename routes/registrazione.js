@@ -5,7 +5,7 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 
 router.get("/registrazione", (req, res) => {
-    res.render("registrazione");
+    res.render("registrazione", {title: "Registrazione"});
 });
 
 router.post("/registrazione", async (req, res) => {

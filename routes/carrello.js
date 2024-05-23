@@ -8,13 +8,14 @@ router.get("/carrello", (req, res) => {
 
     if (req.isAuthenticated()) {
         res.render("carrello", {
-            authenticated: req.isAuthenticated()
+            authenticated: req.isAuthenticated(),
+            title: "Carrello"
         });
     } else {
         let message;
         if (alert === "nonautorizzato") {
             message = "Autenticati per accedere al carrello";
-            res.render("accedi", { message });
+            res.render("accedi", { message, title: "Accedi" });
         } else {
             res.redirect("/carrello?alert=nonautorizzato");
         }

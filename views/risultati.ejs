@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultati della Ricerca</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <main>
+        <div class="container">
+            <h1>Risultati della Ricerca</h1>
+            <% if (products.length > 0) { %>
+                <ul>
+                    <% products.forEach(product => { %>
+                        <li><strong><%= product.nome %></strong>: €<%= product.prezzo %></li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>Nessun prodotto trovato.</p>
+            <% } %>
+        </div>
+    </main>
+    <%- include('footer') %>
+</body>
+</html>

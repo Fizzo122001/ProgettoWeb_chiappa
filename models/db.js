@@ -57,6 +57,20 @@ class DataBase {
                     resolve(row);
                 }
             });
+
+        });
+    }
+
+    findProductsByName(name) {
+        const sql = `SELECT nome, prezzo FROM Prodotti WHERE nome LIKE ?`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [`%${name}%`], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
         });
     }
 }

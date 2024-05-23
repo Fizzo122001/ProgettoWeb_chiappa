@@ -27,6 +27,7 @@ const registrazioneRouter = require("./routes/registrazione");
 const attrezzaturaRouter = require("./routes/attrezzatura");
 const contattiRouter = require("./routes/contatti");
 const serviziRouter = require("./routes/servizi");
+const searchRouter = require("./routes/search");
 const carrelloRouter = require("./routes/carrello");
 
 // Passport sessions
@@ -55,7 +56,7 @@ app.use("/", attrezzaturaRouter);
 app.use("/", contattiRouter);
 app.use("/", serviziRouter);
 app.use("/", carrelloRouter);
-
+app.use("/", searchRouter);
 // app.use(morgan("tiny"));
 app.use(flash());
 
@@ -94,6 +95,12 @@ passport.deserializeUser(async function (email, done) {
 
 app.get("/privacy", (req, res) => {
     res.render("privacy", {
+        authenticated: req.isAuthenticated()
+    });
+});
+
+app.get("/risultati", (req, res) => {
+    res.render("risultati", {
         authenticated: req.isAuthenticated()
     });
 });

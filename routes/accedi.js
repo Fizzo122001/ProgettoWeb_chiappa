@@ -10,7 +10,7 @@ router.get("/accedi", (req, res) => {
     } else {
         message = alert ? "Autenticati per accedere al carrello." : null;
     }
-    res.render("accedi", { message });
+    res.render("accedi", { message, title: "Accedi"});
 });
 
 router.post("/accedi", (req, res, next) => {
