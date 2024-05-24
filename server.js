@@ -29,7 +29,7 @@ const contattiRouter = require("./routes/contatti");
 const serviziRouter = require("./routes/servizi");
 const searchRouter = require("./routes/search");
 const carrelloRouter = require("./routes/carrello");
-
+const serviziOffertiRouter = require("./routes/servizi_offerti");
 // Passport sessions
 app.use(
     session({
@@ -38,6 +38,7 @@ app.use(
         saveUninitialized: false,
     })
 );
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,8 +58,9 @@ app.use("/", contattiRouter);
 app.use("/", serviziRouter);
 app.use("/", carrelloRouter);
 app.use("/", searchRouter);
+app.use("/", serviziOffertiRouter);
 // app.use(morgan("tiny"));
-app.use(flash());
+
 
 passport.use(new LocalStrategy({
     usernameField: 'email',

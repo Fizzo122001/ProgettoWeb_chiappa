@@ -18,14 +18,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/abbonamenti">Abbonamenti</a>
                     </li>
-                    <% if (authenticated  && coach) { %>
+                    <% if (authenticated && coach) { %>
                         <li class="nav-item">
                             <a class="nav-link" href="/servizi">Servizi</a>
                         </li>
-                    <% } %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contatti">Dove siamo?</a>
-                    </li>
+                        <% } else if (authenticated){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/servizi_offerti">Servizi offerti</a>
+                            </li>
+                            <% } %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contatti">Dove siamo?</a>
+                                </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <% if(title==="Attrezzatura" ) { %>
@@ -36,21 +40,21 @@
                                     placeholder="Cerca attrezzature" aria-label="Search">
                             </form>
                         </li>
-                    <% } %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/carrello"><i class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                    <% if (authenticated) { %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
-                                Logout</a>
-                        </li>
-                    <% } else { %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/accedi"><i class="fa-solid fa-sign-in-alt"></i>
-                                Login</a>
-                        </li>
-                    <% } %>
+                        <% } %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/carrello"><i class="fa-solid fa-cart-shopping"></i></a>
+                            </li>
+                            <% if (authenticated) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                                        Logout</a>
+                                </li>
+                                <% } else { %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/accedi"><i class="fa-solid fa-sign-in-alt"></i>
+                                            Login</a>
+                                    </li>
+                                    <% } %>
                 </ul>
             </div>
         </div>

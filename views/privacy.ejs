@@ -26,7 +26,11 @@
 </head>
 
 <body>
-    <%- include("header.ejs") %>
+    <%- include("header.ejs" ,{
+        authenticated,
+        title,
+        coach: 0
+    }) %>
     <ul>
         <div class="container" id="iniziale">
             Informativa al trattamento dei dati personali resa ai sensi degli art. 13-14 del Reg. (UE)
