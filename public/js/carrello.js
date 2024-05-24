@@ -10,9 +10,8 @@ function serializza() {
     localStorage.carrello = JSON.stringify(carrello);
 }
 
-function aggiungi(cod, descrizione, prezzo) {
+function aggiungi(descrizione, prezzo) {
     var oggetto = {
-        codice: cod,
         descrizione: descrizione,
         prezzo: prezzo,
         qnt: 1
@@ -54,7 +53,6 @@ function tabella() {
     var tableHTML = "<table class='table carrello-tabella' border='1'><thead><tr><th>Codice</th><th>Descrizione</th><th>Prezzo</th><th>Quantità/Ore</th><th>Totale</th></tr></thead><tbody>";
     for (var i = 0; i < carrello.length; i++) {
         var prodotto = carrello[i];
-        tableHTML += "<tr><td class='center'>" + prodotto.codice;
         tableHTML += "<td>" + prodotto.descrizione;
         tableHTML += "<td class='right'>" + prodotto.prezzo.toFixed(2);
         tableHTML += "<td><input onChange='cambia(" + i + ")' class='center' id='q" + i + "' type='text' size='4' value='" + prodotto.qnt + "'>";

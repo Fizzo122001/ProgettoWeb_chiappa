@@ -8,7 +8,6 @@ router.get("/attrezzatura", async (req, res) => {
         let attrezzatura = req.query["attrezzatura"];
         let prodotti = [];
 
-        // Verifica se è presente un parametro di ricerca nella richiesta
         if (attrezzatura) {
             prodotti = await db.findProductsByName(attrezzatura);
         } else {
@@ -18,7 +17,7 @@ router.get("/attrezzatura", async (req, res) => {
         res.render("attrezzatura", {
             authenticated: req.isAuthenticated(),
             title: "Attrezzatura",
-            prodotti: prodotti,
+            prodotti: prodotti
         });
     } catch (error) {
         console.error('Errore durante il recupero dei prodotti:', error);
