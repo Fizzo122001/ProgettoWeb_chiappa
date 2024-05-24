@@ -30,6 +30,7 @@ const serviziRouter = require("./routes/servizi");
 const searchRouter = require("./routes/search");
 const carrelloRouter = require("./routes/carrello");
 const serviziOffertiRouter = require("./routes/servizi_offerti");
+
 // Passport sessions
 app.use(
     session({

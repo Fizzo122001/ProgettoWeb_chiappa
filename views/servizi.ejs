@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <%- include("head.ejs") %>
 
-<body class="gradient-custom d-flex flex-column min-vh-100">
-    <%- include("header.ejs" ,{
-        authenticated,
-        title,
-        coach
-    }) %>
-        <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
-            <h4 class="page-title text-center">Benvenuto coach quale servizio vuoi offrire oggi?</h4>
-            <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-                <div class="col">
-                    <div class="product-container">
-                        <div class="product">
+    <head>
+        <style>
+            .product {
+                max-height: 600px;
+            }
+
+            .product-container {
+                height: 500px;
+            }
+
+            .product-container .btn {
+                margin-top: auto;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body class="gradient-custom d-flex flex-column min-vh-100">
+        <%- include("header.ejs", { authenticated, title, coach ,servizi }) %>
+            <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
+                <h4 class="page-title text-center mt-4">Benvenuto coach, quale servizio vuoi offrire oggi?</h4>
+                <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+                    <% servizi.forEach(servizio=> { %>
+                        <div class="col">
+                            <div class="product-container">
+                                <div class="product"></div>
+                                <div class="my-3">
+                                    <h4>
+                                        <%= servizio.nome %>
+                                    </h4>
+                                    <p>
+                                        <%= servizio.descrizione %>
+                                    </p>
+                                    <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
+                                </div>
+                                <form action="/elimina_servizio" method="post">
+                                    <input type="hidden" name="nome" value="<%= servizio.nome %>">
+                                    <div>
+                                        <button class="btn btn-warning mt-4">Elimina questo servizio</button>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
-                        <div class="my-3">
-                            <h4>Servizio personal trainer</h4>
-                            <p>Offri la possibilità di aiutare in prima persona i clienti, in modo tale da applicare i
-                                migliori allenamenti.</p>
-                            <img src="/image/personal.png" class="img-fluid" style="width: 90%;"
-                                alt="Errore immagine 1">
-                            <button onclick="javascript:offri('personal trainer')" class="btn btn-warning" style="margin-top: 15px;">Offri
-                                questo servizio</button>
-                        </div>
-                    </div>
+                        <% }) %>
                 </div>
-                <div class="col">
-                    <div class="product-container">
-                        <div class="product">
-                        </div>
-                        <div class="my-3">
-                            <h4>Yoga</h4>
-                            <p>Offri la possibilità che un gruppo di clienti possa fare allenamento all'aperto con la
-                                tua supervisione.</p>
-                            <img src="/image/yoga.png" class="img-fluid" alt="Errore immagine 2">
-                            <button onclick="javascript:offri('palestra out-side')" class="btn btn-warning" style="margin-top: 15px;">Offri
-                                questo servizio</button>
-                        </div>
+
+                <form action="/offri_servizio" method="POST" class="mt-4">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome Servizio</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="product-container">
-                        <div class="product">
-                        </div>
-                        <div class="my-3">
-                            <h4>Servizio di nutrizionista</h4>
-                            <p>Offri consulenza per far cambiare stile di vita ai nostri clienti per raggiungere
-                                obiettivi di benessere ottimale.</p>
-                            <img src="/image/dieta.png" class="img-fluid" style="width: 100%;" alt="Errore immagine 3">
-                            <button onclick="javascript:offri('nutrizionista')" class="btn btn-warning" style="margin-top: 15px;">Offri questo
-                                servizio</button>
-                        </div>
+                    <div class="mb-3">
+                        <label for="descrizione" class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="immagine" class="form-label">Immagine URL</label>
+                        <input type="text" class="form-control" id="immagine" name="immagine" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning mb-4">Offri Servizio</button>
+                </form>
+
             </div>
-        </div>
-        <%- include ("footer.ejs") %>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-        <script src="js/servizio.js"></script>
-</body>
+            <%- include("footer.ejs") %>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+                <script src="js/servizio.js"></script>
+    </body>
 
 </html>
