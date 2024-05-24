@@ -4,9 +4,11 @@ const router = express.Router();
 
 router.get("/accedi", (req, res) => {
     const { alert } = req.query;
-    let message = req.flash('error');
+    let message = '';
     if (alert === "nonautorizzato") {
         message = "Devi essere un coach per accedere a questa pagina.";
+    } else if (alert === "errore") {
+        message = "Username o password errati";
     } else if (!message && alert) {
         message = "Autenticati per accedere al carrello.";
     }
@@ -20,8 +22,7 @@ router.post("/accedi", (req, res, next) => {
             return next(err);
         }
         if (!user) {
-            req.flash('error', 'Username o password errati');
-            return res.redirect('/accedi');
+            return res.redirect('/accedi?alert=errore');
         }
         req.login(user, (err) => {
             if (err) {
