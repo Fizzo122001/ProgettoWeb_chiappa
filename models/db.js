@@ -103,7 +103,7 @@ class DataBase {
             });
         });
     }
-
+    
     getServizi() {
         const sql = `SELECT * FROM servizi`;
         return new Promise((resolve, reject) => {

@@ -30,6 +30,7 @@ const serviziRouter = require("./routes/servizi");
 const searchRouter = require("./routes/search");
 const carrelloRouter = require("./routes/carrello");
 const serviziOffertiRouter = require("./routes/servizi_offerti");
+const pagaRouter = require("./routes/paga");
 
 // Passport sessions
 app.use(
@@ -60,6 +61,7 @@ app.use("/", serviziRouter);
 app.use("/", carrelloRouter);
 app.use("/", searchRouter);
 app.use("/", serviziOffertiRouter);
+app.use("/", pagaRouter);
 // app.use(morgan("tiny"));
 
 

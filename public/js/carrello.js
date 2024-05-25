@@ -118,15 +118,35 @@ function paga() {
         for (let i = 0; i < carrello.length; i++) {
             totale += carrello[i].prezzo * carrello[i].qnt;
         }
-        alert(`Hai pagato € ${totale.toFixed(2)}`);
-        carrello = [];
-        serializza();
-        elencoCarrello();
+
+        const ordine = {
+            totale: totale,
+            prodotti: carrello
+        };
+
+        fetch('/paga', {
+            method: 'POST',
+            body: JSON.stringify(ordine),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Hai pagato € ${totale.toFixed(2)}`);
+                carrello = [];
+                serializza();
+                elencoCarrello();
+            } else {
+                alert('Errore durante il pagamento: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     } else {
         alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
     }
 }
-
 
 
 inizializza();
