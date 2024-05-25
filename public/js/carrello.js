@@ -1,116 +1,113 @@
-let carrello = new Array();    /* carrello con gli acquisti. Vettore di oggetti contenenti codice, prezzo, quantita
-                                           di ciascun prodotto */
+let carrello = [];
 
 function inizializza() {
-/* se esiste un carrello aggiorna la variabile con il contenuto di localStorage */
-  
-   if (localStorage.carrello) {
-        carrello = eval(localStorage.carrello);
-   }
-  
+    document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.carrello) {
+            try {
+                carrello = JSON.parse(localStorage.carrello);
+            } catch (e) {
+                console.error("Error parsing carrello from localStorage", e);
+                carrello = [];
+            }
+        }
+        elencoCarrello();
+    });
 }
 
 function serializza() {
-/* trasforma il carrello in una stringa e lo memorizza mediante cookies (localStorage)
-   nel disco del client */
-   let cart = "[";
-   let comma = "";
-   for(let item of carrello) {
-       cart = cart + comma; 
-       cart = cart + " {codice : " + item.codice;
-       cart = cart + ", descr: '" + item.descr + "'"; 
-       cart = cart + ", prezzo : " + item.prezzo;
-       cart = cart + ", qnt : " + item.qnt + "}";
-       comma = ',';
-   } 
-   cart = cart + "]";
-   delete localStorage.carrello;
-   localStorage.carrello = cart; 
+    localStorage.setItem('carrello', JSON.stringify(carrello));
 }
 
 function cerca(cod) {
-/* restituisce la posizione di un prodotto gia presente in carrello
-   Se non esiste: -1 */
-   for (let i=0; i<carrello.length; i++) {
-        if (carrello[i].codice == cod) {
+    for (let i = 0; i < carrello.length; i++) {
+        if (carrello[i].codice === cod) {
             return i;
         }
-   }
-   return -1;
+    }
+    return -1;
 }
 
-function aggiungi(cod,prezzo, descrizione) {
-/* aggiunge un prodotto al carrello */
-   let ogg = {};
-   let n = carrello.length;
-   let x = cerca(cod);
-   if (x == 'N') {     
-       ogg.codice  = cod;
-       ogg.prezzo  = prezzo;
-       ogg.descr   = descrizione;
-       ogg.qnt     = 1;
-       carrello[n] = ogg;
-   } else { 
-       carrello[x].qnt++;
-   }
-   serializza()
+function aggiungi(cod, prezzo, descrizione) {
+    let ogg = {};
+    let n = carrello.length;
+    let x = cerca(cod);
+    if (x === -1) {
+        ogg.codice = cod;
+        ogg.prezzo = prezzo;
+        ogg.descr = descrizione;
+        ogg.qnt = 1;
+        carrello[n] = ogg;
+    } else {
+        carrello[x].qnt++;
+    }
+    serializza();
 }
-        
-         
-/* -------------------------- Funzioni per la pagina Carrello -----------------------------*/
 
-      function totali () {
-      /* calcola e visualizza i totali */
-           
-           let obj, tot=0, tp=0;
-           for (let i=0;i< carrello.length; i++) {
-                let id = "t"+i;
-                obj = document.getElementById(id);
-                tp = carrello[i].prezzo * carrello[i].qnt;
-                obj.innerHTML = tp;
-                tot = tot + tp;
-           }
-           document.getElementById('totale').innerHTML = tot;
-           return tot;
-          
-      }
+function cambia(index) {
+    let quantityInput = document.getElementById(`form${index}`);
+    carrello[index].qnt = parseInt(quantityInput.value);
+    serializza();
+    aggiornaTotale();
+}
 
-      function cambia(cella) {
-      /* una delle quantita e' cambiata aggiorna le variabili */
-          let label = "q"+cella; 
-          let v   = document.getElementById(label).value;
-          carrello[cella].qnt = v;
-          serializza(); 
-          totali();
-      }
+function aggiornaTotale() {
+    let totale = 0;
+    for (let i = 0; i < carrello.length; i++) {
+        totale += carrello[i].prezzo * carrello[i].qnt;
+    }
+    document.getElementById('totale').innerText = `€ ${totale.toFixed(2)}`;
+}
 
-      function tabella() {
-             document.write("<TABLE border=1><TH>Codice<TH>Descrizione<TH>prezzo<TH>Quantita<TH>Totale\n ");
-             for(let i=0; i<carrello.length; i++) {
-                 document.write("<TR><TD class=center>"+carrello[i].codice);
-                 document.write("<TD> " + carrello[i].descr);
-                 document.write("<TD class=right>"+carrello[i].prezzo);
-                 document.write("<TD><input onChange=cambia(" + i + ") class=center id=q" + i + " type=text size=4 value= " + carrello[i].qnt + ">");
-                 document.write("<TD class=right id=t"+i+">&nbsp;\n"); 
-             }
-             document.write("<TR><TD colspan=4 align=right>Importo Ordine <TD class=right id=totale>&nbsp\n");
-             document.write("</TABLE>\n");            
-      }
+function elencoCarrello() {
+    let elencoDiv = document.getElementById('elenco');
+    elencoDiv.innerHTML = ""; // Pulisce il div prima di aggiungere nuovi elementi
 
-      function svuota() {
-            delete localStorage.carrello;
-            document.getElementById('elenco').innerHTML =
-                                 "<TABLE border=1><TH>Codice<TH>prezzo<TH>Quantita<TH>Totale</TABLE>";            
-      }
+    for (let i = 0; i < carrello.length; i++) {
+        let item = carrello[i];
+        let itemHtml = `
+            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <img src="${item.img}" class="img-fluid rounded-3" alt="${item.descr}">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="text-muted">Shirt</h6>
+                    <h6 class="text-black mb-0">${item.descr}</h6>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown(); cambia(${i})">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input id="form${i}" min="0" name="quantity" value="${item.qnt}" type="number" class="form-control form-control-sm" onchange="cambia(${i})" />
+                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp(); cambia(${i})">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h6 class="mb-0">€ ${item.prezzo.toFixed(2)}</h6>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <a href="#!" class="text-muted" onclick="rimuoviElemento(${i})"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+            <hr class="my-4">`;
 
-      function paga() {
-        if (localStorage.carrello) {
-            let totale = totali();
-            alert("Hai pagato " + totale.toFixed(2) + "€");
-            svuota();
-        } else {
-            alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
-        }
+        elencoDiv.innerHTML += itemHtml;
     }
 
+    elencoDiv.innerHTML += `
+        <div class="row mb-4 d-flex justify-content-end">
+            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h6 class="mb-0">Totale: <span id="totale">€ 0.00</span></h6>
+            </div>
+        </div>`;
 
+    aggiornaTotale();
+}
+
+function rimuoviElemento(index) {
+    carrello.splice(index, 1);
+    serializza();
+    elencoCarrello();
+}
+
+inizializza();

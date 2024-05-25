@@ -8,38 +8,41 @@
 <body class="gradient-custom">
     <%- include("header", { authenticated, title, prodotti, coach: 0 }) %>
 
-    <main>
-        <div class="text-center mt-4 mb-2">
-            <h4>Esplora le nostre attrezzature fitness</h4>
-        </div>
-        <div class="container mb-4">
-            <div class="row">
-                <% prodotti.forEach(function(product) { %>
-                <div id="card-attrezzatura" class="p-3 col-md-3">
-                    <div class="card">
-                        <img class="card-img-top" src="/image/<%= product.immagine %>" alt="<%= product.nome %>">
-                        <div class="card-body">
-                            <h4 class="card-title"><%= product.nome %></h4>
-                            <p class="card-text">Prezzo: €<%= product.prezzo.toFixed(2) %></p>
-                            <a href="javascript:aggiungi(<%= product.codice %>, <%= product.prezzo %>, '<%= product.nome %>')" class="btn btn-warning">Aggiungi al carrello</a>
-                        </div>
-                    </div>
-                </div>
-                <% }); %>
+        <main>
+            <div class="text-center mt-4 mb-2">
+                <h4>Esplora le nostre attrezzature fitness</h4>
             </div>
-        </div>
-    </main>
+            <div class="container mb-4">
+                <div class="row">
+                    <% prodotti.forEach(function(product) { %>
+                        <div id="card-attrezzatura" class="p-3 col-md-3">
+                            <div class="card">
+                                <img class="card-img-top" src="/image/<%= product.immagine %>"
+                                    alt="<%= product.nome %>">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <%= product.nome %>
+                                    </h4>
+                                    <p class="card-text">Prezzo: €<%= product.prezzo.toFixed(2) %>
+                                    </p>
+                                    <a href="javascript:aggiungi(<%= product.codice %>, <%= product.prezzo %>, '<%= product.nome %>')"
+                                        class="btn btn-warning">Aggiungi al carrello</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+        </main>
 
-    <footer>
-        <%- include('footer') %>
-    </footer>
+        <footer>
+            <%- include('footer') %>
+        </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        <script>
             inizializza();
-        });
-    </script>
-    <script src="/js/carrello.js"></script>
+        </script>
+        <script src="/js/carrello.js"></script>
 </body>
 
 </html>
