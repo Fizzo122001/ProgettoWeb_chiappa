@@ -71,6 +71,7 @@ function aggiungi(cod,prezzo, descrizione) {
                 tot = tot + tp;
            }
            document.getElementById('totale').innerHTML = tot;
+           return tot;
           
       }
 
