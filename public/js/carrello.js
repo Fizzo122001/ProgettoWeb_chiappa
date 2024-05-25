@@ -1,82 +1,116 @@
-var carrello = [];
+var carrello = new Array();    /* carrello con gli acquisti. Vettore di oggetti contenenti codice, prezzo, quantita
+                                           di ciascun prodotto */
 
 function inizializza() {
-    if (localStorage.carrello) {
-        carrello = JSON.parse(localStorage.carrello);
-    }
+/* se esiste un carrello aggiorna la variabile con il contenuto di localStorage */
+  
+   if (localStorage.carrello) {
+        carrello = eval(localStorage.carrello);
+   }
+  
 }
 
 function serializza() {
-    localStorage.carrello = JSON.stringify(carrello);
+/* trasforma il carrello in una stringa e lo memorizza mediante cookies (localStorage)
+   nel disco del client */
+   var cart = "[";
+   var comma = "";
+   for(i=0;i<carrello.length;i++) {
+       cart = cart + comma; 
+       cart = cart + " {codice : " + carrello[i].codice;
+       cart = cart + ", descr: '" + carrello[i].descr + "'"; 
+       cart = cart + ", prezzo : " + carrello[i].prezzo;
+       cart = cart + ", qnt : " + carrello[i].qnt + "}";
+       comma = ',';
+   } 
+   cart = cart + "]";
+   delete localStorage.carrello;
+   localStorage.carrello = cart; 
 }
 
-function aggiungi(descrizione, prezzo) {
-    var oggetto = {
-        descrizione: descrizione,
-        prezzo: prezzo,
-        qnt: 1
-    };
+function cerca(cod) {
+/* restituisce la posizione di un prodotto gia presente in carrello
+   Se non esiste: 'N' */
+   for (var i=0;i<carrello.length;i++) {
+        if (carrello[i].codice == cod) {
+            return(i);
+        }
+   }
+   return("N");
+}
 
-    if (cod === -1) {
-        carrello.push(oggetto);
-    } else {
-        carrello[indice].qnt++;
+function aggiungi(cod,prezzo, descrizione) {
+/* aggiunge un prodotto al carrello */
+   var ogg = {};
+   var n = carrello.length;
+   var x = cerca(cod);
+   if (x == 'N') {     
+       ogg.codice  = cod;
+       ogg.prezzo  = prezzo;
+       ogg.descr   = descrizione;
+       ogg.qnt     = 1;
+       carrello[n] = ogg;
+   } else { 
+       carrello[x].qnt++;
+   }
+   serializza();
+   alert("prodotto aggiunto al carrello"); 
+}
+        
+         
+/* -------------------------- Funzioni per la pagina Carrello -----------------------------*/
+
+      function totali () {
+      /* calcola e visualizza i totali */
+           
+           var obj, tot=0, tp=0;
+           for (i=0;i< carrello.length; i++) {
+                var id = "t"+i;
+                obj = document.getElementById(id);
+                tp = carrello[i].prezzo * carrello[i].qnt;
+                obj.innerHTML = tp;
+                tot = tot + tp;
+           }
+           document.getElementById('totale').innerHTML = tot;
+          
+      }
+
+      function cambia(cella) {
+      /* una delle quantita e' cambiata aggiorna le variabili */
+          var label = "q"+cella; 
+          var v   = document.getElementById(label).value;
+          carrello[cella].qnt = v;
+          serializza(); 
+          totali();
+      }
+
+      function tabella() {
+             document.write("<TABLE border=1><TH>Codice<TH>Descrizione<TH>prezzo<TH>Quantita<TH>Totale\n ");
+             for(var i=0; i<carrello.length; i++) {
+                 document.write("<TR><TD class=center>"+carrello[i].codice);
+                 document.write("<TD> " + carrello[i].descr);
+                 document.write("<TD class=right>"+carrello[i].prezzo);
+                 document.write("<TD><input onChange=cambia(" + i + ") class=center id=q" + i + " type=text size=4 value= " + carrello[i].qnt + ">");
+                 document.write("<TD class=right id=t"+i+">&nbsp;\n"); 
+             }
+             document.write("<TR><TD colspan=4 align=right>Importo Ordine <TD class=right id=totale>&nbsp\n");
+             document.write("</TABLE>\n");            
+      }
+
+      function svuota() {
+            delete localStorage.carrello;
+            document.getElementById('elenco').innerHTML =
+                                 "<TABLE border=1><TH>Codice<TH>prezzo<TH>Quantita<TH>Totale</TABLE>";            
+      }
+
+      function paga() {
+        if (localStorage.carrello) {
+            var totale = totali();
+            alert("Hai pagato " + totale.toFixed(2) + "€");
+            svuota();
+        } else {
+            alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
+        }
     }
-    serializza();
-    alert("Prodotto aggiunto al carrello");
-}
-
-function totali() {
-    var totale = 0;
-
-    for (var i = 0; i < carrello.length; i++) {
-        var id = "t" + i;
-        var prodotto = carrello[i];
-        var totaleProdotto = prodotto.prezzo * prodotto.qnt;
-        document.getElementById(id).textContent = totaleProdotto.toFixed(2);
-        totale += totaleProdotto;
-    }
-
-    document.getElementById('totale').textContent = totale.toFixed(2);
-    return totale;
-}
-
-function cambia(cella) {
-    var label = "q" + cella;
-    var v = document.getElementById(label).value;
-    carrello[cella].qnt = v;
-    serializza();
-    totali();
-}
-
-function tabella() {
-    var tableHTML = "<table class='table carrello-tabella' border='1'><thead><tr><th>Codice</th><th>Descrizione</th><th>Prezzo</th><th>Quantità/Ore</th><th>Totale</th></tr></thead><tbody>";
-    for (var i = 0; i < carrello.length; i++) {
-        var prodotto = carrello[i];
-        tableHTML += "<td>" + prodotto.descrizione;
-        tableHTML += "<td class='right'>" + prodotto.prezzo.toFixed(2);
-        tableHTML += "<td><input onChange='cambia(" + i + ")' class='center' id='q" + i + "' type='text' size='4' value='" + prodotto.qnt + "'>";
-        tableHTML += "<td class='right' id='t" + i + "'>&nbsp;</td></tr>";
-    }
-    tableHTML += "<tr><td colspan='4' class='right' align='right'>Importo Ordine</td><td class='right' id='totale'>&nbsp;</td></tr></tbody></table>";
-
-    document.getElementById('elenco').innerHTML = tableHTML;
-}
-
-function svuota() {
-    localStorage.removeItem('carrello');
-    carrello = [];
-    tabella();
-}
-
-function paga() {
-    if (localStorage.carrello) {
-        var totale = totali();
-        inviaOrdine(totale);
-    } else {
-        alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
-    }
-}
-
 
 

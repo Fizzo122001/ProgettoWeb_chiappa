@@ -25,4 +25,5 @@ router.get("/attrezzatura", async (req, res) => {
     }
 });
 
+
 module.exports = router;

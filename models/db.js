@@ -79,7 +79,7 @@ class DataBase {
     }
 
     findProductsByName(name) {
-        const sql = `SELECT immagine, nome, prezzo FROM Prodotti WHERE nome LIKE ?`;
+        const sql = `SELECT immagine, nome, prezzo , codice FROM Prodotti WHERE nome LIKE ?`;
         return new Promise((resolve, reject) => {
             this.db.all(sql, [`%${name}%`], (err, rows) => {
                 if (err) {
@@ -92,7 +92,7 @@ class DataBase {
     }
 
     getAllProducts() {
-        const sql = `SELECT immagine, nome, prezzo FROM Prodotti`;
+        const sql = `SELECT immagine, nome, prezzo ,codice FROM Prodotti`;
         return new Promise((resolve, reject) => {
             this.db.all(sql, [], (err, rows) => {
                 if (err) {
