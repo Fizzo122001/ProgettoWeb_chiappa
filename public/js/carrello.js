@@ -27,7 +27,7 @@ function cerca(cod) {
     return -1;
 }
 
-function aggiungi(cod, prezzo, descrizione) {
+function aggiungi(cod, prezzo, descrizione,img) {
     let ogg = {};
     let n = carrello.length;
     let x = cerca(cod);
@@ -35,6 +35,7 @@ function aggiungi(cod, prezzo, descrizione) {
         ogg.codice = cod;
         ogg.prezzo = prezzo;
         ogg.descr = descrizione;
+        ogg.img = img;
         ogg.qnt = 1;
         carrello[n] = ogg;
     } else {
@@ -56,6 +57,7 @@ function aggiornaTotale() {
         totale += carrello[i].prezzo * carrello[i].qnt;
     }
     document.getElementById('totale').innerText = `€ ${totale.toFixed(2)}`;
+    document.getElementById('totaleCarrello').innerText = `€ ${totale.toFixed(2)}`;
 }
 
 function elencoCarrello() {
@@ -74,11 +76,11 @@ function elencoCarrello() {
                     <h6 class="text-black mb-0">${item.descr}</h6>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown(); cambia(${i})">
+                    <button class="btn btn-link px-1" onclick="this.parentNode.querySelector('input[type=number]').stepDown(); cambia(${i})">
                         <i class="fas fa-minus"></i>
                     </button>
                     <input id="form${i}" min="0" name="quantity" value="${item.qnt}" type="number" class="form-control form-control-sm" onchange="cambia(${i})" />
-                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp(); cambia(${i})">
+                    <button class="btn btn-link px-1" onclick="this.parentNode.querySelector('input[type=number]').stepUp(); cambia(${i})">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
