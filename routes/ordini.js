@@ -4,14 +4,18 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 
 
-router.get('/ordine', async (req, res) => {
+router.get('/ordini', async (req, res) => {
+    if (!req.user)
+        return res.redirect("/accedi");
     try {
         const emailUtente = req.user.email;
         const products = await db.getOrdini(emailUtente);
+        res.render("ordini", { authenticated: req.isAuthenticated(), title: 'Ordini', coach: req.user });
     } catch (error) {
         console.error('Errore durante la ricerca degli ordini:', error);
         res.status(500).send('Errore durante la ricerca degli ordini.');
     }
 });
+
 
 module.exports = router;

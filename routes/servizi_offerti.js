@@ -3,8 +3,9 @@ const router = express.Router();
 const DataBase = require('../models/db'); 
 const database = new DataBase();
 
-// Route per visualizzare i servizi offerti
+
 router.get('/servizi_offerti', async (req, res) => {
+  
     try {
         const servizi = await database.getServizi();
         res.render('servizi_offerti', { authenticated: req.isAuthenticated(), title: 'Servizi Offerti', coach: req.user, servizi: servizi });

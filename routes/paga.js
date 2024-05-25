@@ -3,6 +3,12 @@ const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('my.db'); 
 
+router.get("/paga", (req, res) => {
+    if(!req.user){
+        return res.redirect("/accedi");
+    }
+});
+
 router.post('/paga', (req, res) => {
     const totale = req.body.totale;
     const email_utente = req.user.email;
