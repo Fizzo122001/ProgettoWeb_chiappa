@@ -72,7 +72,7 @@ function elencoCarrello() {
                     <img src="${item.img}" class="img-fluid rounded-3" alt="${item.descr}">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <h6 class="text-muted">Shirt</h6>
+                    <h6 class="text-muted">Prodotto</h6>
                     <h6 class="text-black mb-0">${item.descr}</h6>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -148,5 +148,5 @@ function paga() {
     }
 }
 
-
 inizializza();
+

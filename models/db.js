@@ -117,6 +117,19 @@ class DataBase {
         });
     }
 
+    getOrdini(emailUtente) {
+        const sql = `SELECT * FROM Ordini WHERE email_utente = ?`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [emailUtente], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+    
     offriServizio(nome, descrizione, immagine) {
         const sql = `INSERT INTO servizi (nome, descrizione, immagine) VALUES (?, ?, ?)`;
         return new Promise((resolve, reject) => {
