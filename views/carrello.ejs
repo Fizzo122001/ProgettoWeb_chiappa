@@ -4,41 +4,52 @@
 <%- include("head.ejs") %>
 
     <head>
-        <script src=js/carrello.js></script>
+        <script src="js/carrello.js"></script>
+        <style>
+            footer {
+            
+                bottom: 0;
+                width: 100%;
+                position: sticky;
+                
+            }
+        </style>
     </head>
 
-    <body>
+    <body class="gradient-custom">
+        <%- include("header.ejs" ,{
+            authenticated,
+            title,
+            coach: 0
+        }) %>
+
         <div class="container carrello-wrapper flex-grow-1 text-center">
-            <h4>Carrello della spesa</h4>
+            <h4 class="mt-4">Carrello della spesa</h4>
             <p>
-            <h6>Grazie per il tuo interesse,premi paga ora per confermare l'ordine</h6>
+            <h6>Grazie per il tuo interesse, premi paga ora per confermare l'ordine</h6>
             </p>
             <div id="carrello-container">
                 <script>
-
                     carrello = eval(localStorage.carrello);
-        
+
                     document.write("<div id=elenco>");
                     tabella();
                     document.write("</div>");
                     totali();
-        
                 </script>
                 <div id="elenco"></div>
             </div>
-        
+
             <nav class="mt-4">
                 <ul class="list-inline" style="margin-bottom: 100px;">
                     <li class="list-inline-item"><a href="/abbonamenti" class="btn btn-warning">Torna a fare
                             shopping</a></li>
-                    <li class="list-inline-item"><button onclick="javascript:paga()" class="btn btn-warning">Paga
-                            ora</button></li>
-                    <li class="list-inline-item"><button onclick="javascript:svuota()" class="btn btn-warning">Elimina
+                    <li class="list-inline-item"><button onclick="paga()" class="btn btn-warning">Paga ora</button></li>
+                    <li class="list-inline-item"><button onclick="svuota()" class="btn btn-warning">Elimina
                             carrello</button></li>
                 </ul>
             </nav>
         </div>
-
 
         <script>
             if (localStorage.carrello) {

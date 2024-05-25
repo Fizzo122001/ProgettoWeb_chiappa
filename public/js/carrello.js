@@ -53,8 +53,7 @@ function aggiungi(cod,prezzo, descrizione) {
    } else { 
        carrello[x].qnt++;
    }
-   serializza();
-   alert("prodotto aggiunto al carrello"); 
+   serializza()
 }
         
          
