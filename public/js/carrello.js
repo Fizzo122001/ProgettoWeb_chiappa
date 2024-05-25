@@ -27,7 +27,7 @@ function cerca(cod) {
     return -1;
 }
 
-function aggiungi(cod, prezzo, descrizione,img) {
+function aggiungi(cod, prezzo, descrizione, img) {
     let ogg = {};
     let n = carrello.length;
     let x = cerca(cod);
@@ -111,5 +111,22 @@ function rimuoviElemento(index) {
     serializza();
     elencoCarrello();
 }
+
+function paga() {
+    if (carrello.length > 0) {
+        let totale = 0;
+        for (let i = 0; i < carrello.length; i++) {
+            totale += carrello[i].prezzo * carrello[i].qnt;
+        }
+        alert(`Hai pagato € ${totale.toFixed(2)}`);
+        carrello = [];
+        serializza();
+        elencoCarrello();
+    } else {
+        alert("Il carrello è vuoto, aggiungi almeno un prodotto per ordinare.");
+    }
+}
+
+
 
 inizializza();
