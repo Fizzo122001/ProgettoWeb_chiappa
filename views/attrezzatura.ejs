@@ -3,30 +3,20 @@
 
 <head>
     <%- include('head') %>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="/js/carrello.js"></script>
-
-    <style>
-        .product {
-            margin-bottom: 2rem;
-        }
-    </style>
 </head>
 
 <body class="gradient-custom">
-    <%- include("header.ejs", { authenticated, title, prodotti, coach: 0 }) %>
+    <%- include("header", { authenticated, title, prodotti, coach: 0 }) %>
 
     <main>
-        <div class="text-center mt-4 mb-4">
+        <div class="text-center mt-4 mb-2">
             <h4>Esplora le nostre attrezzature fitness</h4>
         </div>
-        <div class="container">
+        <div class="container mb-4">
             <div class="row">
                 <% prodotti.forEach(function(product) { %>
-                <div class="col-md-3">
-                    <div class="product card">
+                <div id="card-attrezzatura" class="p-3 col-md-3">
+                    <div class="card">
                         <img class="card-img-top" src="/image/<%= product.immagine %>" alt="<%= product.nome %>">
                         <div class="card-body">
                             <h4 class="card-title"><%= product.nome %></h4>
@@ -49,6 +39,7 @@
             inizializza();
         });
     </script>
+    <script src="/js/carrello.js"></script>
 </body>
 
 </html>

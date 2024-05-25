@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<%- include("head.ejs") %>
+<head>
+    <%- include("head") %>
+</head>
 
 <body class="gradient-custom">
-  <div class="container">
-    <div class="row justify-content-center align-items-center vh-100">
-      <div class="col-md-6">
-        <div class="card shadow">
-          <div class="card-header text-center bg-transparent">
-            <h4>Registrazione</h4>
-          </div>
-          <div class="card-body">
-            <form action="/registrazione" method="POST" onsubmit="return validateForm()">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci email" required>
-              </div>
-              <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci username"
-                  required>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password"
-                  placeholder="Inserisci password" required>
-              </div>
-              <div class="mb-3">
-                <label for="confirm_password" class="form-label">Conferma Password</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                  placeholder="Conferma password" required>
-              </div>
-              <div class="mb-3">
-                <label for="birthday" class="form-label">Data di Nascita</label>
-                <input type="date" class="form-control" id="birthday" name="birthday">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-warning">Registrati</button>
-                <a href="/" class="btn btn-warning">Torna alla Home</a>
-              </div>
-              <div id="password_error" class="text-danger mt-2"></div>
-            </form>
-          </div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center vh-100">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-transparent">
+                        <h4>Registrazione</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/registrazione" method="POST" onsubmit="return validateForm()">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Inserisci email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Inserisci username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Inserisci password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Conferma Password</label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                    name="confirm_password" placeholder="Conferma password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="birthday" class="form-label">Data di Nascita</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-warning">Registrati</button>
+                                <a href="/" class="btn btn-warning">Torna alla Home</a>
+                            </div>
+                            <div id="password_error" class="text-danger mt-2"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <script>
-    function validateForm() {
-      var password = document.getElementById("password").value;
-      var confirm_password = document.getElementById("confirm_password").value;
+    <script>
+        function validateForm() {
+            let password = document.getElementById("password").value;
+            let confirm_password = document.getElementById("confirm_password").value;
 
-      if (password != confirm_password) {
-        document.getElementById("password_error").innerHTML = "Le password non corrispondono";
-        return false;
-      }
-      if (password.length < 6) {
-        document.getElementById("password_error").innerHTML = "Sono necessari minimo 6 caratteri";
-        return false;
-      }
-      return true;
-    }
+            if (password != confirm_password) {
+                document.getElementById("password_error").innerHTML = "Le password non corrispondono";
+                return false;
+            }
+            if (password.length < 6) {
+                document.getElementById("password_error").innerHTML = "Sono necessari minimo 6 caratteri";
+                return false;
+            }
+            return true;
+        }
 
-  </script>
+    </script>
 
 </body>
 

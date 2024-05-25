@@ -1,74 +1,77 @@
 <!DOCTYPE html>
 <html lang="it">
-<%- include("head.ejs") %>
 
-    <head>
-        <style>
-            .product {
-                max-height: 600px;
-            }
+<head>
+    <%- include("head") %>
+</head>
 
-            .product-container {
-                height: 500px;
-            }
+<head>
+    <style>
+        .product {
+            max-height: 600px;
+        }
 
-            .product-container .btn {
-                margin-top: auto;
-                margin-bottom: 10px;
-            }
-        </style>
-    </head>
+        .product-container {
+            height: 500px;
+        }
 
-    <body class="gradient-custom d-flex flex-column min-vh-100">
-        <%- include("header.ejs", { authenticated, title, coach ,servizi }) %>
-            <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
-                <h4 class="page-title text-center mt-4">Benvenuto coach, quale servizio vuoi offrire oggi?</h4>
-                <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-                    <% servizi.forEach(servizio=> { %>
-                        <div class="col">
-                            <div class="product-container">
-                                <div class="product"></div>
-                                <div class="my-3">
-                                    <h4>
-                                        <%= servizio.nome %>
-                                    </h4>
-                                    <p>
-                                        <%= servizio.descrizione %>
-                                    </p>
-                                    <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
-                                </div>
-                                <form action="/elimina_servizio" method="post">
-                                    <input type="hidden" name="nome" value="<%= servizio.nome %>">
-                                    <div>
-                                        <button class="btn btn-warning mt-4">Elimina questo servizio</button>
-                                    </div>
-                                </form>
+        .product-container .btn {
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
 
+<body class="gradient-custom d-flex flex-column min-vh-100">
+    <%- include("header", { authenticated, title, coach ,servizi }) %>
+        <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
+            <h4 class="page-title text-center mt-4">Benvenuto coach, quale servizio vuoi offrire oggi?</h4>
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+                <% servizi.forEach(servizio=> { %>
+                    <div class="col">
+                        <div class="product-container">
+                            <div class="product"></div>
+                            <div class="my-3">
+                                <h4>
+                                    <%= servizio.nome %>
+                                </h4>
+                                <p>
+                                    <%= servizio.descrizione %>
+                                </p>
+                                <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
                             </div>
+                            <form action="/elimina_servizio" method="post">
+                                <input type="hidden" name="nome" value="<%= servizio.nome %>">
+                                <div>
+                                    <button class="btn btn-warning mt-4">Elimina questo servizio</button>
+                                </div>
+                            </form>
+
                         </div>
-                        <% }) %>
-                </div>
-
-                <form action="/offri_servizio" method="POST" class="mt-4">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome Servizio</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="descrizione" class="form-label">Descrizione</label>
-                        <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="immagine" class="form-label">Immagine URL</label>
-                        <input type="text" class="form-control" id="immagine" name="immagine" required>
-                    </div>
-                    <button type="submit" class="btn btn-warning mb-4">Offri Servizio</button>
-                </form>
-
+                    <% }) %>
             </div>
-            <%- include("footer.ejs") %>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-                <script src="js/servizio.js"></script>
-    </body>
+
+            <form action="/offri_servizio" method="POST" class="mt-4">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome Servizio</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descrizione" class="form-label">Descrizione</label>
+                    <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="immagine" class="form-label">Immagine URL</label>
+                    <input type="text" class="form-control" id="immagine" name="immagine" required>
+                </div>
+                <button type="submit" class="btn btn-warning mb-4">Offri Servizio</button>
+            </form>
+
+        </div>
+        <%- include("footer") %>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+            <script src="js/servizio.js"></script>
+</body>
 
 </html>

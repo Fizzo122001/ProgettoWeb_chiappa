@@ -1,8 +1,19 @@
 html,
 body {
     overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 /****** Navbar ******/
 /* Navbar */
@@ -31,7 +42,7 @@ body {
 
 .carousel {
     max-width: 60%;
-    margin: 40px auto 0 auto; 
+    margin: 40px auto 0 auto;
 }
 
 .carousel-caption {
@@ -41,13 +52,12 @@ body {
     color: white;
     max-width: 70%;
     margin-top: 5%;
-
 }
 
-.carousel-caption p,h5 {
+.carousel-caption p,
+h5 {
     font-size: 1.5vw;
 }
-
 
 /****** Carrello ******/
 .carrello-wrapper {
@@ -79,6 +89,26 @@ body {
     text-align: right;
 }
 
+.product {
+    margin-bottom: 2rem;
+}
+
+/****** Card ******/
+
+.card {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+#card-attrezzatura {
+    transition: transform .2s; /* Animation */
+}
+
+#card-attrezzatura:hover {
+    transform: scale(1.05);
+}
 
 /****** Footer ******/
 .contact-icon {
@@ -91,13 +121,19 @@ body {
     text-decoration: none;
 }
 
+#google-map {
+    transition: transform .2s; /* Animation */
+}
+
+#google-map:hover {
+    transform: scale(1.05);
+}
+
 /****** Other ******/
+
 .product-container {
-    margin-top: 30px;
-    margin-bottom: 30px;
     height: 425px;
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 15px;
     border-radius: 10px;
 }
 
@@ -106,12 +142,5 @@ img[src$="yoga.png"] {
 }
 
 .gradient-custom {
-    background: whitesmoke
-}
-
-.card {
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.8);
+    background: whitesmoke;
 }
