@@ -29,7 +29,6 @@ function cerca(cod) {
 
 function aggiungi(cod, prezzo, descrizione, img) {
     let ogg = {};
-    let n = carrello.length;
     let x = cerca(cod);
     if (x === -1) {
         ogg.codice = cod;
@@ -37,11 +36,12 @@ function aggiungi(cod, prezzo, descrizione, img) {
         ogg.descr = descrizione;
         ogg.img = img;
         ogg.qnt = 1;
-        carrello[n] = ogg;
+        carrello.push(ogg);
     } else {
         carrello[x].qnt++;
     }
     serializza();
+    elencoCarrello();
 }
 
 function cambia(index) {
@@ -149,4 +149,3 @@ function paga() {
 }
 
 inizializza();
-
