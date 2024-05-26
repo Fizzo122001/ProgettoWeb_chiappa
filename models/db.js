@@ -168,7 +168,22 @@ class DataBase {
             });
         });
     }
+
+    modificaServizio(nome, descrizione, immagine) {
+        const sql = `UPDATE servizi SET descrizione = ?, immagine = ? WHERE nome = ?`;
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [descrizione, immagine, nome], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+    
     
 }
 
 module.exports = DataBase;
+
