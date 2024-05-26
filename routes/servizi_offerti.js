@@ -5,6 +5,8 @@ const database = new DataBase();
 
 
 router.get('/servizi_offerti', async (req, res) => {
+    if (!req.user)
+        return res.redirect("/accedi");
   
     try {
         const servizi = await database.getServizi();

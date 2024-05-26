@@ -9,7 +9,7 @@ router.get('/ordini', async (req, res) => {
     try {
         const emailUtente = req.user.email;
         const ordini = await db.getOrdini(emailUtente); 
-        res.render("ordini", { authenticated: req.isAuthenticated(), title: 'Ordini', coach: req.user, ordini: ordini }); // Passa gli ordini al template
+        res.render("ordini", { authenticated: req.isAuthenticated(), title: 'Ordini', coach: req.user, ordini: ordini }); 
     } catch (error) {
         console.error('Errore durante la ricerca degli ordini:', error);
         res.status(500).send('Errore durante la ricerca degli ordini.');
