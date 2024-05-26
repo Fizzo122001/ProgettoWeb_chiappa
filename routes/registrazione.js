@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const DataBase = require("../models/db");
+const db = new DataBase();
 
 
 router.get("/registrazione", (req, res) => {
@@ -15,7 +16,7 @@ router.post("/registrazione", async (req, res) => {
             req.body, 
             hashedPassword
         );
-        res.redirect("/principale");
+        return res.redirect("/");
     } catch (error) {
         console.log("Error while registering: ", error);
         res.redirect("/registrazione");

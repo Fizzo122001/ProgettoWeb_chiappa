@@ -10,6 +10,7 @@ router.get("/carrello", (req, res) => {
         res.render("carrello", {
             authenticated: req.isAuthenticated(),
             title: "Carrello",
+            coach : req.user.coach,
         });
     } else {
         let message;

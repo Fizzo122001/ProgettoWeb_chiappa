@@ -129,6 +129,19 @@ class DataBase {
             });
         });
     }
+
+    getAllOrdini() {
+        const sql = `SELECT * FROM Ordini`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
     
     offriServizio(nome, descrizione, immagine) {
         const sql = `INSERT INTO servizi (nome, descrizione, immagine) VALUES (?, ?, ?)`;
