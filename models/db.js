@@ -181,6 +181,32 @@ class DataBase {
             });
         });
     }
+
+    recensioni(email_utente, descrizione) {
+        const sql = `INSERT INTO recensioni (email_utente, descrizione) VALUES (?, ?)`;
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [email_utente, descrizione], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+    getRecensioni() {
+        const sql =  `SELECT * FROM recensioni`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [], function (err, rows) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows); 
+                }
+            });
+        });
+    }
     
     
 }

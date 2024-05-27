@@ -37,12 +37,17 @@ function aggiungi(cod, prezzo, descrizione, img) {
         ogg.img = img;
         ogg.qnt = 1;
         carrello.push(ogg);
+        serializza();
+        elencoCarrello();
+        mostraMessaggio("Prodotto aggiunto al carrello!");
     } else {
         carrello[x].qnt++;
+        serializza();
+        elencoCarrello();
+        mostraMessaggio("Quantità del prodotto nel carrello aumentata!");
     }
-    serializza();
-    elencoCarrello();
 }
+
 
 function cambia(index) {
     let quantityInput = document.getElementById(`form${index}`);
