@@ -5,16 +5,16 @@ const router = express.Router();
 
 router.get("/servizi", async (req, res) => {
     try {
-        if (req.isAuthenticated() && req.user.coach === 1) {
+        if (req.user.coach === 1) {
             const servizi = await db.getServizi();
-            res.render("servizi", {
+            return res.render("servizi", {
                 authenticated: req.isAuthenticated(),
                 title: "Servizi",
                 coach: req.user.coach,
                 servizi: servizi
             });
         } else {
-            res.redirect("/accedi?alert=nonautorizzato");
+            return res.redirect("/accedi?alert=nonautorizzato");
         }
     } catch (error) {
         console.error("Errore durante il recupero dei servizi:", error);
@@ -23,17 +23,17 @@ router.get("/servizi", async (req, res) => {
 });
 
 router.get('/offri_servizio', async (req, res) => {
-    if (!req.user || req.user.coach)
+    if (!req.user || !req.user.coach)
         return res.redirect("/accedi");
 });
 
 router.get('/elimina_servizio', async (req, res) => {
-    if (!req.user || req.user.coach)
+    if (!req.user || !req.user.coach)
         return res.redirect("/accedi");
 });
 
 router.get('/modifica', async (req, res) => {
-    if (!req.user || req.user.coach)
+    if (!req.user || !req.user.coach)
         return res.redirect("/accedi");
 });
 

@@ -18,40 +18,44 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/abbonamenti">Abbonamenti</a>
                     </li>
-                    <% if (authenticated && coach) { %>
+                    <% if (coach) { %>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/servizi">Servizi</a>
+
+                            <% } else if (authenticated && !coach){ %>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/servizi_offerti">Servizi offerti</a>
+
                         </li>
-                        <% } else if (authenticated){ %>
+                        <% } %>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/servizi_offerti">Servizi offerti</a>
+                                <a class="nav-link text-white" href="/contatti">Dove siamo?</a>
                             </li>
-                            <% } %>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/contatti">Dove siamo?</a>
-                                </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <% if(title==="Attrezzatura" ) { %>
                         <li class="nav-item d-none d-lg-block">
-                            <form class="d-none d-lg-flex mx-auto text-white" style="max-width: 400px;" action="/attrezzatura"
-                                method="GET">
+                            <form class="d-none d-lg-flex mx-auto text-white" style="max-width: 400px;"
+                                action="/attrezzatura" method="GET">
                                 <input name="attrezzatura" id="attrezzatura" class="form-control me-2" type="text"
                                     placeholder="Cerca attrezzature" aria-label="Search">
                             </form>
                         </li>
                         <% } %>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/carrello"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a class="nav-link text-white" href="/carrello"><i
+                                        class="fa-solid fa-cart-shopping"></i></a>
                             </li>
                             <% if (authenticated) { %>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                                    <a class="nav-link text-white" href="/logout"><i
+                                            class="fa-solid fa-sign-out-alt"></i>
                                         Logout</a>
                                 </li>
                                 <% } else { %>
                                     <li class="nav-item">
-                                        <a class="nav-link text-white" href="/accedi"><i class="fa-solid fa-sign-in-alt"></i>
+                                        <a class="nav-link text-white" href="/accedi"><i
+                                                class="fa-solid fa-sign-in-alt"></i>
                                             Login</a>
                                     </li>
                                     <% } %>

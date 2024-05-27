@@ -13,11 +13,12 @@ router.get("/attrezzatura", async (req, res) => {
         } else {
             prodotti = await db.getAllProducts();
         }
-
+        const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
         res.render("attrezzatura", {
             authenticated: req.isAuthenticated(),
             title: "Attrezzatura",
-            prodotti: prodotti
+            prodotti: prodotti,
+            coach : Rolecoach
         });
     } catch (error) {
         console.error('Errore durante il recupero dei prodotti:', error);

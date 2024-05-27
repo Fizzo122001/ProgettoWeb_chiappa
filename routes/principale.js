@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
     res.render("principale", {
         authenticated: req.isAuthenticated(),
         title: "Home",
-        coach: req.user ? req.user.coach : null
+        coach: req.user ? req.user.coach : null,
     });
 });
 
