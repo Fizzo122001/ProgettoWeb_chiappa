@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mt-auto">
-                                <form action="/elimina_servizio" method="post">
+                                <form action="/servizi/elimina_servizio" method="post">
                                     <input type="hidden" name="nome" value="<%= servizio.nome %>">
                                     <button class="btn btn-warning me-2">Elimina questo servizio</button>
                                 </form>
@@ -66,7 +66,7 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <form action="/offri_servizio" method="POST">
+                    <form action="/servizi/offri_servizio" method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome Servizio</label>
                             <input type="text" class="form-control" id="nome" name="nome" required>
@@ -83,7 +83,7 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form action="/modifica" method="POST">
+                    <form action="/servizi/modifica" method="POST">
                         <div class="mb-3">
                             <label for="nome_modifica" class="form-label">Nome Servizio da Modificare</label>
                             <input type="text" class="form-control" id="nome_modifica" name="nome_modifica" required>

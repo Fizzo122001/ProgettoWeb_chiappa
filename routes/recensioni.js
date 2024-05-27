@@ -8,7 +8,8 @@ router.get("/", async (req, res) => {
     try {
         const Getrecensioni = await db.getRecensioni();
         const emailUtente = req.isAuthenticated() ? req.user.email : '';
-        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : 0 , emailUtente});
+        const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
+        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : Rolecoach , emailUtente});
     } catch (error) {
         console.error('Errore durante il recupero delle recensioni:', error);
         res.status(500).send('Errore durante il recupero delle recensioni.');
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
 
 router.post('/inserisci_recensione', async (req, res) => {
     try {
-        const { emailUtente, testoRecensione } = req.body; 
+        const { emailUtente, testoRecensione } = req.body;
         await db.recensioni(emailUtente, testoRecensione);
         return res.redirect('/recensioni');
     } catch (error) {
