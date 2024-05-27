@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require("passport");
 const router = express.Router();
 
-router.get("/accedi", (req, res) => {
+router.get("/", (req, res) => {
     const { alert } = req.query;
     let message = '';
     if (alert === "nonautorizzato") {
@@ -15,7 +15,7 @@ router.get("/accedi", (req, res) => {
     res.render("accedi", { message, title: "Accedi" });
 });
 
-router.post("/accedi", (req, res, next) => {
+router.post("/", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
         if (err) {
             console.error("Errore durante l'autenticazione:", err);

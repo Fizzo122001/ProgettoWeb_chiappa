@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get("/carrello", (req, res) => {
+router.get("/", (req, res) => {
     const { alert } = req.query;
     
 

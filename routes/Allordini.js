@@ -3,7 +3,7 @@ const router = express.Router();
 const DataBase = require("../models/db");
 const db = new DataBase();
 
-router.get('/allordini', async (req, res) => {
+router.get('/', async (req, res) => {
     if (!req.user || !req.user.coach) {
         return res.redirect("/accedi");
     }

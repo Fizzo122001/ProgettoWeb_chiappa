@@ -5,11 +5,11 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 
 
-router.get("/registrazione", (req, res) => {
+router.get("/", (req, res) => {
     res.render("registrazione", {title: "Registrazione"});
 });
 
-router.post("/registrazione", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         await db.addNewUser(

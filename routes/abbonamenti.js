@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get("/abbonamenti", (req, res) => {
+router.get("/", (req, res) => {
     const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
 
     res.render("abbonamenti", {

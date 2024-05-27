@@ -54,19 +54,19 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", principaleRouter);
-app.use("/", abbonamentiRouter);
-app.use("/", accediRouter);
-app.use("/", logoutRouter);
-app.use("/", registrazioneRouter);
-app.use("/", attrezzaturaRouter);
-app.use("/", contattiRouter);
-app.use("/", serviziRouter);
-app.use("/", carrelloRouter);
-app.use("/", searchRouter);
-app.use("/", serviziOffertiRouter);
-app.use("/", pagaRouter);
-app.use("/", ordiniRouter);
-app.use("/", AllordiniRouter);
+app.use("/abbonamenti", abbonamentiRouter);
+app.use("/accedi", accediRouter);
+app.use("/logout", logoutRouter);
+app.use("/registrazione", registrazioneRouter);
+app.use("/attrezzatura", attrezzaturaRouter);
+app.use("/contatti", contattiRouter);
+app.use("/servizi", serviziRouter);
+app.use("/carrello", carrelloRouter);
+app.use("/search", searchRouter);
+app.use("/servizi_offerti", serviziOffertiRouter);
+app.use("/paga", pagaRouter);
+app.use("/ordini", ordiniRouter);
+app.use("/allordini", AllordiniRouter);
 // app.use(morgan("tiny"));
 
 

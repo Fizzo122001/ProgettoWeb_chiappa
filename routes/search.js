@@ -4,7 +4,7 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 
 
-router.get('/search', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const name = req.query.name.trim();
         const products = await db.findProductsByName(name);

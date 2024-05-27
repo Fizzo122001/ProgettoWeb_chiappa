@@ -3,7 +3,7 @@ const DataBase = require("../models/db");
 const db = new DataBase();
 const router = express.Router();
 
-router.get("/servizi", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         if (req.user.coach === 1) {
             const servizi = await db.getServizi();

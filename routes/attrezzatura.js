@@ -3,7 +3,7 @@ const router = express.Router();
 const DataBase = require("../models/db");
 const db = new DataBase();
 
-router.get("/attrezzatura", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         let attrezzatura = req.query["attrezzatura"];
         let prodotti = [];
