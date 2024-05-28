@@ -18,22 +18,22 @@ function serializza() {
     localStorage.setItem('carrello', JSON.stringify(carrello));
 }
 
-function cerca(cod) {
+function cerca(id) {
     for (let i = 0; i < carrello.length; i++) {
-        if (carrello[i].codice === cod) {
+        if (carrello[i].id === id) {
             return i;
         }
     }
     return -1;
 }
 
-function aggiungi(cod, prezzo, descrizione, img) {
+function aggiungi(id, prezzo, nome, img) {
     let ogg = {};
-    let x = cerca(cod);
+    let x = cerca(id);
     if (x === -1) {
-        ogg.codice = cod;
+        ogg.id = id;
         ogg.prezzo = prezzo;
-        ogg.descr = descrizione;
+        ogg.nome = nome;
         ogg.img = img;
         ogg.qnt = 1;
         carrello.push(ogg);
@@ -74,11 +74,11 @@ function elencoCarrello() {
         let itemHtml = `
             <div class="row mb-4 d-flex justify-content-between align-items-center">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="${item.img}" class="img-fluid rounded-3" alt="${item.descr}">
+                    <img src="${item.img}" class="img-fluid rounded-3" alt="${item.nome}">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
                     <h6 class="text-muted">Prodotto</h6>
-                    <h6 class="text-black mb-0">${item.descr}</h6>
+                    <h6 class="text-black mb-0">${item.nome}</h6>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                     <button class="btn btn-link px-1" onclick="this.parentNode.querySelector('input[type=number]').stepDown(); cambia(${i})">
