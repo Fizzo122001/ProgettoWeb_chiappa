@@ -20,6 +20,14 @@
                                 <%= servizio.descrizione %>
                             </p>
                             <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
+                            <p>
+                                Posti disponibili : <%= servizio.posti_disponibili %>
+                            </p>
+                            <form action="/servizi_offerti/prenotati" method="post"><button type="submit"
+                                    class="btn btn-warning mb-4">Prenotati</button>
+                                <input type="hidden" name="nome" value="<%= servizio.nome %>">
+                            </form>
+
                         </div>
                     </div>
                     <% }) %>

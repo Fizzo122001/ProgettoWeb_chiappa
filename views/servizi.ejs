@@ -51,6 +51,8 @@
                                         <%= servizio.descrizione %>
                                     </p>
                                     <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
+
+                                    <p>Posti disponibili:  <%= servizio.posti_disponibili %> </p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mt-auto">
@@ -78,6 +80,10 @@
                         <div class="mb-3">
                             <label for="immagine" class="form-label">Immagine URL</label>
                             <input type="text" class="form-control" id="immagine" name="immagine" required>
+                        </div>
+                        <div>
+                            <label for="posti" class="form-label">Posti disponibili</label>
+                            <input type="text" class="form-control" id="posti_disponibili" name="posti_disponibili" required>
                         </div>
                         <button type="submit" class="btn btn-warning mb-4">Offri Servizio</button>
                     </form>

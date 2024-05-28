@@ -39,8 +39,8 @@ router.get('/modifica', async (req, res) => {
 
 router.post("/offri_servizio", async (req, res) => {
     try {
-        const { nome, descrizione, immagine } = req.body;
-        await db.offriServizio(nome, descrizione, immagine);
+        const { nome, descrizione, immagine , posti_disponibili} = req.body;
+        await db.offriServizio(nome, descrizione, immagine, posti_disponibili);
         res.redirect("/servizi");
     } catch (error) {
         console.error("Errore durante l'offerta del servizio:", error);

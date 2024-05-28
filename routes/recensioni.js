@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         const Getrecensioni = await db.getRecensioni();
         const emailUtente = req.isAuthenticated() ? req.user.email : '';
         const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
-        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : Rolecoach , emailUtente});
+        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : req.user.coach , emailUtente});
     } catch (error) {
         console.error('Errore durante il recupero delle recensioni:', error);
         res.status(500).send('Errore durante il recupero delle recensioni.');

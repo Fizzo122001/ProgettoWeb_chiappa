@@ -19,4 +19,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/prenotati', async (req, res) => {
+    try {
+        const { nome } = req.body;
+        await database.posti_disponibili(nome);
+        return res.redirect('/servizi_offerti');
+    } catch (error) {
+        console.error('Errore durante l\'inserimento della recensione:', error);
+        return res.status(500).send('Errore durante l\'inserimento della recensione.');
+    }
+});
+
 module.exports = router;
