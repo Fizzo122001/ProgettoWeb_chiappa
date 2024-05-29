@@ -10,31 +10,31 @@
 
                 <ul class="nav navbar-nav">
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link text-white" aria-current="page" href="/"><i class="fa-solid fa-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/attrezzatura">Attrezzatura</a>
+                        <a class="nav-link text-white" href="/attrezzatura"><i class="fa-solid fa-dumbbell"></i> Attrezzatura</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/abbonamenti">Abbonamenti</a>
+                        <a class="nav-link text-white" href="/abbonamenti"><i class="fa-solid fa-id-card"></i> Abbonamenti</a>
                     </li>
                     <% if (coach) { %>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/servizi">Servizi</a>
+                            <a class="nav-link text-white" href="/servizi"><i class="fa-regular fa-calendar-days"></i> Servizi</a>
 
                             <% } else if (authenticated && !coach){ %>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/servizi_offerti">Servizi offerti</a>
+                            <a class="nav-link text-white" href="/servizi_offerti"><i class="fa-solid fa-timeline"></i> Servizi offerti</a>
 
                         </li>
                         <% } %>
                     
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/recensioni">Recensioni</a>
+                                <a class="nav-link text-white" href="/recensioni"><i class="fa-regular fa-comment"></i> Recensioni</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="/contatti">Dove siamo?</a>
+                                <a class="nav-link text-white" href="/contatti"><i class="fa-solid fa-location-dot"></i> Dove siamo?</a>
                             </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

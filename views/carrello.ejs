@@ -3,69 +3,65 @@
 
 <head>
     <%- include("head.ejs") %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="gradient-custom">
     <script src="js/carrello.js"></script>
-    <%- include("header.ejs" ,{ authenticated, title, coach }) %>
-        <section class="carrello-wrapper">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12">
-                        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                            <div class="card-body p-0">
-                                <div class="row g-0">
-                                    <div class="col-lg-8">
-                                        <div class="p-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-5">
-                                                <h1 class="fw-bold mb-0 text-black">Carrello della spesa</h1>
-                                            </div>
-                                            <hr class="my-4">
-                                            <div id="elenco">
+    <%- include("header.ejs", { authenticated, title, coach }) %>
+    <section class="carrello-wrapper">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Carrello della spesa</h1>
+                                        </div>
+                                        <hr class="my-4">
+                                        <div id="elenco">
 
-                                            </div>
-                                            <div class="pt-5">
-                                                <h6 class="mb-0"><a href="/attrezzatura" class="text-body"><i
-                                                            class="fas fa-long-arrow-alt-left me-2"></i>Torna alle
-                                                        atttrezzature</a>
-                                                </h6>
-                                            </div>
+                                        </div>
+                                        <div class="pt-5">
+                                            <h6 class="mb-0"><a href="/attrezzatura" class="text-body"><i
+                                                        class="fas fa-long-arrow-alt-left me-2"></i>Torna alle
+                                                    attrezzature</a>
+                                            </h6>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 bg-grey">
-                                        <div class="p-5">
-                                            <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                                            <div class="d-flex justify-content-between mb-5">
-                                                <h5 class="text-uppercase">Prezzo totale</h5>
-                                                <div h5 id="totaleCarrello">
-                                                    </h5>></div>
-                                            </div>
-
-
-                                            <h5 class="text-uppercase mb-3">Scegli la palestra</h5>
-
-                                            <div class="mb-4 pb-2">
-                                                <select data-mdb-select-init>
-                                                    <option value="1">PalestraFit Venezia</option>
-                                                    <option value="2">PalestraFit Biella</option>
-                                                    <option value="3">PalestraFit Vercelli</option>
-                                                    <option value="4">PalestraFit Torino</option>
-                                                </select>
-                                            </div>
-                                            <hr class="my-4">
-                                            <button onclick="javascript:paga()" class="btn btn-dark btn-block btn-lg"
-                                                data-mdb-ripple-color="dark">Paga
-                                                ora</button>
-                                            <a href="/ordini" data-mdb-button-init data-mdb-ripple-init
-                                                class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">I
-                                                miei ordini</a>
-                                            <% if (coach) { %>
-                                                <a href="/allordini" data-mdb-button-init data-mdb-ripple-init
-                                                    class="btn btn-dark btn-block btn-lg mt-2"
-                                                    data-mdb-ripple-color="dark">Vedi tutti gli ordini</a>
-                                                <% } %>
-
+                                </div>
+                                <div class="col-lg-4 bg-grey">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Prezzo totale</h5>
+                                            <div h5 id="totaleCarrello"></div>
                                         </div>
+
+                                        <h5 class="text-uppercase mb-3">Scegli la palestra</h5>
+
+                                        <div class="mb-4 pb-2">
+                                            <select data-mdb-select-init>
+                                                <option value="1">PalestraFit Venezia</option>
+                                                <option value="2">PalestraFit Biella</option>
+                                                <option value="3">PalestraFit Vercelli</option>
+                                                <option value="4">PalestraFit Torino</option>
+                                            </select>
+                                        </div>
+                                        <hr class="my-4">
+                                        <button onclick="javascript:paga()" class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark">Paga ora</button>
+                                        <a href="/ordini" data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">I miei
+                                            ordini</a>
+                                        <% if (coach) { %>
+                                            <a href="/allordini" data-mdb-button-init data-mdb-ripple-init
+                                                class="btn btn-dark btn-block btn-lg mt-2"
+                                                data-mdb-ripple-color="dark">Vedi tutti gli ordini</a>
+                                            <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -73,12 +69,28 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="paymentToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <p>Pagamento avvenuto con successo!</p>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <%- include("footer") %>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-
+    <%- include("footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var toastEl = document.getElementById('paymentToast');
+            var toast = new bootstrap.Toast(toastEl);
+        });
+    </script>
 </body>
 
 </html>

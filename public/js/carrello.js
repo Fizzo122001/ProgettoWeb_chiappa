@@ -63,6 +63,8 @@ function aggiornaTotale() {
     }
     document.getElementById('totale').innerText = `€ ${totale.toFixed(2)}`;
     document.getElementById('totaleCarrello').innerText = `€ ${totale.toFixed(2)}`;
+
+
 }
 
 function elencoCarrello() {
@@ -128,6 +130,9 @@ function paga() {
             totale: totale,
             prodotti: carrello
         };
+        var toastEl = document.getElementById('paymentToast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
 
         fetch('/paga', {
             method: 'POST',
@@ -137,7 +142,6 @@ function paga() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert(`Hai pagato € ${totale.toFixed(2)}`);
                 carrello = [];
                 serializza();
                 elencoCarrello();

@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         const servizi = await database.getServizi();
         const coach = req.user.coach;
         const id_utente=req.user.id;
-        return res.render('servizi_offerti', { authenticated: req.isAuthenticated(), title: 'Servizi Offerti', servizi, coach, id_utente });
+        return res.render('servizi_offerti', { authenticated: req.isAuthenticated(), title: 'Servizi Offerti', servizi, coach, id_utente});
     } catch (error) {
         console.error(error);
         res.status(500).send('Errore nel recuperare i servizi offerti.');
@@ -26,6 +26,7 @@ router.post('/prenotati', async (req, res) => {
         const prenotazioni = await database.controllaPrenotazione(id_utente, id_servizio);
         if (prenotazioni.length > 0) {
             return res.status(400).send('Sei già prenotato per questo servizio.');
+            
         }
 
         await database.posti_disponibili(id_servizio);

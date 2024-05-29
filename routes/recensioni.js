@@ -7,7 +7,7 @@ const db = new DataBase();
 router.get("/", async (req, res) => {
     try {
         const Getrecensioni = await db.getRecensioni();
-        const id_utente = req.user.id;
+        const id_utente = req.user && req.user.id !== undefined ? req.user.id : null;
         const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
         res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : Rolecoach , id_utente});
     } catch (error) {
