@@ -11,10 +11,10 @@ router.get("/", (req, res) => {
 
 router.post('/', (req, res) => {
     const totale = req.body.totale;
-    const email_utente = req.user.email;
+    const id_utente = req.user.id;
 
-    const sql = `INSERT INTO Ordini (email_utente, prezzo) VALUES (?, ?)`;
-    db.run(sql, [email_utente, totale], function (err) {
+    const sql = `INSERT INTO Ordini (id_utente, prezzo) VALUES (?, ?)`;
+    db.run(sql, [id_utente, totale], function (err) {
         if (err) {
             return res.status(500).json({ success: false, message: err.message });
         }

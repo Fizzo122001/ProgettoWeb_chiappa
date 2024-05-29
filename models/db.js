@@ -169,10 +169,10 @@ class DataBase {
         });
     }
 
-    modificaServizio(id, descrizione, immagine) {
-        const sql = `UPDATE Servizi SET descrizione = ?, immagine = ? WHERE ID = ?`;
+    modificaServizio(ID, nome, descrizione, immagine) {
+        const sql = `UPDATE Servizi SET nome = ?, descrizione = ?, immagine = ? WHERE ID = ?`;
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [descrizione, immagine, id], function (err) {
+            this.db.run(sql, [nome, descrizione, immagine, ID], function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -181,11 +181,12 @@ class DataBase {
             });
         });
     }
+    
 
-    recensioni(id_utente, descrizione) {
-        const sql = `INSERT INTO recensioni (id_utente, descrizione) VALUES (?, ?)`;
+    recensioni(id_utente, commento) {
+        const sql = `INSERT INTO recensioni (id_utente, commento) VALUES (?, ?)`;
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [id_utente, descrizione], function (err) {
+            this.db.run(sql, [id_utente, commento], function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -208,10 +209,10 @@ class DataBase {
         });
     }
 
-    posti_disponibili(nome) {
-        const sql = `UPDATE Servizi SET posti_disponibili = posti_disponibili - 1 WHERE nome = ? AND posti_disponibili > 0`;
+    posti_disponibili(ID) {
+        const sql = `UPDATE Servizi SET posti_disponibili = posti_disponibili - 1 WHERE ID = ? AND posti_disponibili > 0`;
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [nome], function (err) {
+            this.db.run(sql, [ID], function (err) {
                 if (err) {
                     reject(err);
                 } else {

@@ -50,8 +50,8 @@ router.post("/offri_servizio", async (req, res) => {
 
 router.post("/elimina_servizio", async (req, res) => {
     try {
-        const { nome } = req.body;
-        await db.eliminaServizio(nome);
+        const { ID_servizio } = req.body;
+        await db.eliminaServizio(ID_servizio);
         res.redirect("/servizi");
     } catch (error) {
         console.error("Errore durante l'eliminazione del servizio:", error);
@@ -61,8 +61,8 @@ router.post("/elimina_servizio", async (req, res) => {
 
 router.post("/modifica", async (req, res) => {
     try {
-        const { nome_modifica, nuova_descrizione, nuova_immagine } = req.body;
-        await db.modificaServizio(nome_modifica, nuova_descrizione, nuova_immagine);
+        const { ID_servizio , nome_modifica, nuova_descrizione, nuova_immagine } = req.body;
+        await db.modificaServizio(ID_servizio,nome_modifica, nuova_descrizione, nuova_immagine);
         return res.redirect("/servizi");
     } catch (error) {
         console.error("Errore durante l'eliminazione del servizio:", error);

@@ -16,7 +16,7 @@
                                 <div class="card mb-4">
                                     <div class="card-body">
                                         <h5 class="card-title">Numero di ordine: 00000<%= ordine.ID %></h5>
-                                        <p>Utente : <%= ordine.email_utente %></p>
+                                        <p>Utente : <%= ordine.id_utente %></p>
                                         <% if (ordine.Prezzo !== undefined) { %>
                                             <p class="card-text">Totale speso: €<%= ordine.Prezzo.toFixed(2) %></p>
                                         <% } else { %>

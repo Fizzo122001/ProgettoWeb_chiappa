@@ -97,6 +97,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(async function (email, done) {
     try {
         const user = await db.findUserByEmail(email);
+        user.id = user.ID;
         done(null, user);
     } catch (err) {
         console.error("Error finding user by email:", err);

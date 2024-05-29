@@ -7,9 +7,9 @@ const db = new DataBase();
 router.get("/", async (req, res) => {
     try {
         const Getrecensioni = await db.getRecensioni();
-        const emailUtente = req.isAuthenticated() ? req.user.email : '';
+        const id_utente = req.user.id;
         const Rolecoach = req.user && req.user.coach !== undefined ? req.user.coach : 0;
-        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : req.user.coach , emailUtente});
+        res.render("recensioni", { authenticated: req.isAuthenticated(), title: "recensioni", Getrecensioni , coach : Rolecoach , id_utente});
     } catch (error) {
         console.error('Errore durante il recupero delle recensioni:', error);
         res.status(500).send('Errore durante il recupero delle recensioni.');
@@ -18,8 +18,8 @@ router.get("/", async (req, res) => {
 
 router.post('/inserisci_recensione', async (req, res) => {
     try {
-        const { emailUtente, testoRecensione } = req.body;
-        await db.recensioni(emailUtente, testoRecensione);
+        const { id_utente, testoRecensione } = req.body;
+        await db.recensioni(id_utente, testoRecensione);
         return res.redirect('/recensioni');
     } catch (error) {
         console.error('Errore durante l\'inserimento della recensione:', error);

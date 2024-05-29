@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
 router.post('/prenotati', async (req, res) => {
     try {
-        const { nome } = req.body;
-        await database.posti_disponibili(nome);
+        const { ID_servizio } = req.body;
+        await database.posti_disponibili(ID_servizio);
         return res.redirect('/servizi_offerti');
     } catch (error) {
         console.error('Errore durante l\'inserimento della recensione:', error);
