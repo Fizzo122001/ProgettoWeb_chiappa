@@ -3,15 +3,10 @@
 
 <head>
     <%- include("head") %>
-    <style>
-        .btn-prenotato {
-            background-color: grey;
-        }
-    </style>
 </head>
 
 <body class="gradient-custom d-flex flex-column min-vh-100">
-    <%- include("header", { authenticated, title, servizi, coach, id_utente}) %>
+    <%- include("header", { authenticated, title, servizi, coach, id_utente , message}) %>
     <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
         <h4 class="page-title text-center">Servizi Offerti</h4>
         <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
@@ -31,6 +26,11 @@
                             </p>
                             <form action="/servizi_offerti/prenotati" method="post" class="mb-0">
                                     <button type="submit" class="btn btn-warning">Prenotati</button>
+                                    <% if (message) { %>
+                                        <div class="alert alert-danger" role="alert">
+                                            <%= message %>
+                                        </div>
+                                        <% } %>
                                 <input type="hidden" name="id_servizio" value="<%= servizio.ID %>">
                                 <input type="hidden" name="id_utente" value="<%= id_utente %>">
                             </form>

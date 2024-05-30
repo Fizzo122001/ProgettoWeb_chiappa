@@ -249,11 +249,6 @@ class DataBase {
     }
 
 
-
-    
-
-
-
 }
 
 module.exports = DataBase;

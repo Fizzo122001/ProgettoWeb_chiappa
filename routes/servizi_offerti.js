@@ -9,11 +9,16 @@ router.get('/', async (req, res) => {
         return res.redirect("/accedi");
     }
 
+    const { alert } = req.query;
+    let message = '';
+    if (alert === "nonautorizzato") 
+        message = "Sei già prenotato al servizio";
+
     try {
         const servizi = await database.getServizi();
         const coach = req.user.coach;
         const id_utente=req.user.id;
-        return res.render('servizi_offerti', { authenticated: req.isAuthenticated(), title: 'Servizi Offerti', servizi, coach, id_utente});
+        return res.render('servizi_offerti', { authenticated: req.isAuthenticated(), title: 'Servizi Offerti', servizi, coach, id_utente , message });
     } catch (error) {
         console.error(error);
         res.status(500).send('Errore nel recuperare i servizi offerti.');
@@ -25,7 +30,7 @@ router.post('/prenotati', async (req, res) => {
         const { id_utente, id_servizio } = req.body;
         const prenotazioni = await database.controllaPrenotazione(id_utente, id_servizio);
         if (prenotazioni.length > 0) {
-            return res.status(400).send('Sei già prenotato per questo servizio.');
+            return res.redirect('/servizi_offerti?alert=nonautorizzato');
             
         }
 

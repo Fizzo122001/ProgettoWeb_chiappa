@@ -4,125 +4,140 @@
 <head>
     <%- include("head") %>
 
-        <style>
-            .product {
-                max-height: 600px;
-            }
+    <style>
+        .product {
+            max-height: 600px;
+        }
 
-            .product-container {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                padding: 15px;
-            }
+        .product-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
 
-            .product-title {
-                margin-top: 2rem;
-            }
+        .product-title {
+            margin-top: 2rem;
+        }
 
-            .product-content {
-                flex-grow: 1;
-            }
+        .product-content {
+            flex-grow: 1;
+        }
 
-            .product-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: auto;
-            }
-        </style>
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+    </style>
 </head>
 
 <body class="gradient-custom d-flex flex-column min-vh-100">
     <%- include("header", { authenticated, title, coach, servizi }) %>
-        <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
-            <h4 class="page-title text-center mt-4">Benvenuto coach, quale servizio vuoi offrire oggi?</h4>
-            <div class="row row-cols-1 row-cols-md-3 g-4 text-center mt-2">
-                <% servizi.forEach(servizio=> { %>
-                    <div class="col">
-                        <div class="product-container">
-                            <div class="product-content">
-                                <div class="product"></div>
-                                <div class="my-3">
-                                    <h4 class="product-title">
-                                        <%= servizio.nome %>
-                                    </h4>
-                                    <p>
-                                       ID servizio :  <%= servizio.ID %> 
-                                    </p>
-                                    <p>
-                                        <%= servizio.descrizione %>
-                                    </p>
-                                    <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
-                                </div>
-                            </div>
-                            <div class="product-footer">
-                                <p class="mb-0">
-                                    Posti disponibili: <%= servizio.posti_disponibili %>
-                                </p>
-                                <form action="/servizi/elimina_servizio" method="post">
-                                    <input type="hidden" name="ID_servizio" value="<%= servizio.ID %>">
-                                    <button type="submit" class="btn btn-warning">Elimina questo servizio</button>
-                                </form>
-                            </div>
+    <div class="container flex-grow-1 d-flex flex-column justify-content-center text-center">
+        <h4 class="page-title text-center mt-4">Benvenuto coach, quale servizio vuoi offrire oggi?</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-center mt-2">
+            <% servizi.forEach(servizio => { %>
+            <div class="col">
+                <div class="product-container">
+                    <div class="product-content">
+                        <div class="product"></div>
+                        <div class="my-3">
+                            <h4 class="product-title">
+                                <%= servizio.nome %>
+                            </h4>
+                            <p>
+                                ID servizio : <%= servizio.ID %>
+                            </p>
+                            <p>
+                                <%= servizio.descrizione %>
+                            </p>
+                            <img src="<%= servizio.immagine %>" class="img-fluid" alt="Errore immagine">
                         </div>
                     </div>
-                    <% }) %>
+                    <div class="product-footer">
+                        <p class="mb-0">
+                            Posti disponibili: <%= servizio.posti_disponibili %>
+                        </p>
+                        <form action="/servizi/elimina_servizio" method="post">
+                            <input type="hidden" name="ID_servizio" value="<%= servizio.ID %>">
+                            <button type="submit" class="btn btn-warning py-0 me-2">Elimina questo servizio</button>
+                        </form>
+                        <button type="button" class="btn btn-primary modifica-servizio py-0 p-3" data-id="<%= servizio.ID %>" data-nome="<%= servizio.nome %>" data-descrizione="<%= servizio.descrizione %>" data-immagine="<%= servizio.immagine %>">Modifica Servizio</button>
+                    </div>
+                </div>
             </div>
+            <% }) %>
+        </div>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <form action="/servizi/offri_servizio" method="POST">
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome Servizio</label>
-                            <input type="text" class="form-control" id="nome" name="nome" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descrizione" class="form-label">Descrizione</label>
-                            <textarea class="form-control" id="descrizione" name="descrizione" rows="3"
-                                required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="immagine" class="form-label">Immagine URL</label>
-                            <input type="text" class="form-control" id="immagine" name="immagine" required>
-                        </div>
-                        <div>
-                            <label for="posti" class="form-label">Posti disponibili</label>
-                            <input type="text" class="form-control" id="posti_disponibili" name="posti_disponibili"
-                                required>
-                        </div>
-                        <button type="submit" class="btn btn-warning mb-4">Offri Servizio</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <form action="/servizi/modifica" method="POST">
-                        <div class="mb-3">
-                            <label for="nome_modifica" class="form-label">ID Servizio da Modificare</label>
-                            <input type="text" class="form-control" id="ID_servizio" name="ID_servizio" required>
-
-                            <label for="nome_modifica" class="form-label">Nuovo nome</label>
-                            <input type="text" class="form-control" id="nome_modifica" name="nome_modifica" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nuova_descrizione" class="form-label">Nuova Descrizione</label>
-                            <textarea class="form-control" id="nuova_descrizione" name="nuova_descrizione" rows="3"
-                                required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nuova_immagine" class="form-label">Nuova Immagine URL</label>
-                            <input type="text" class="form-control" id="nuova_immagine" name="nuova_immagine" required>
-                        </div>
-                        <button type="submit" class="btn btn-warning mb-4">Modifica Servizio</button>
-                    </form>
-                </div>
+        <div class="row mt-4">
+            <div class="col">
+                <form action="/servizi/offri_servizio" method="POST">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome Servizio</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descrizione" class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="immagine" class="form-label">Immagine URL</label>
+                        <input type="text" class="form-control" id="immagine" name="immagine" required>
+                    </div>
+                    <div>
+                        <label for="posti" class="form-label">Posti disponibili</label>
+                        <input type="text" class="form-control" id="posti_disponibili" name="posti_disponibili" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning mb-4 mt-2">Offri Servizio</button>
+                </form>
+            </div>
+            <div class="col">
+                <form action="/servizi/modifica" method="POST" id="modifica-form">
+                    <div class="mb-3">
+                        <label for="ID_servizio" class="form-label">ID Servizio da Modificare</label>
+                        <input type="text" class="form-control" id="ID_servizio" name="ID_servizio" readonly required>
+                        <label for="nome_modifica" class="form-label">Nuovo nome</label>
+                        <input type="text" class="form-control" id="nome_modifica" name="nome_modifica" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nuova_descrizione" class="form-label">Nuova Descrizione</label>
+                        <textarea class="form-control" id="nuova_descrizione" name="nuova_descrizione" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nuova_immagine" class="form-label">Nuova Immagine URL</label>
+                        <input type="text" class="form-control" id="nuova_immagine" name="nuova_immagine" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning mb-4 mt-2">Modifica Servizio</button>
+                </form>
             </div>
         </div>
-        <%- include("footer") %>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-            <script src="js/servizio.js"></script>
+    </div>
+    <%- include("footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="js/servizio.js"></script>
+    <script>
+        document.querySelectorAll('.modifica-servizio').forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const nome = this.getAttribute('data-nome');
+                const descrizione = this.getAttribute('data-descrizione');
+                const immagine = this.getAttribute('data-immagine');
+
+                const form = document.getElementById('modifica-form');
+                form.ID_servizio.value = id;
+                form.nome_modifica.value = nome;
+                form.nuova_descrizione.value = descrizione;
+                form.nuova_immagine.value = immagine;
+
+                form.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 
 </html>
