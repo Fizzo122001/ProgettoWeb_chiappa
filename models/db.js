@@ -274,6 +274,18 @@ class DataBase {
         });
     }
 
+    getAllPrenotazioni() {
+        const sql = `SELECT * FROM Prenotazioni`;
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, [], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
 
 }
 

@@ -34,6 +34,7 @@ const pagaRouter = require("./routes/paga");
 const ordiniRouter = require("./routes/ordini");
 const AllordiniRouter = require("./routes/Allordini");
 const recensioniRouter = require("./routes/recensioni");
+const prenotazioniRouter = require("./routes/prenotazioni");
 
 // Passport sessions
 app.use(
@@ -68,6 +69,7 @@ app.use("/paga", pagaRouter);
 app.use("/ordini", ordiniRouter);
 app.use("/allordini", AllordiniRouter);
 app.use("/recensioni", recensioniRouter);
+app.use("/prenotazioni", prenotazioniRouter);
 // app.use(morgan("tiny"));
 
 
