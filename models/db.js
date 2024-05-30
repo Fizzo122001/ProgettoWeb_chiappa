@@ -238,11 +238,37 @@ class DataBase {
     controllaPrenotazione(id_utente,id_servizio) {
         const sql = `SELECT * FROM Prenotazioni WHERE ID_utente = ? AND ID_servizio = ?`;
         return new Promise((resolve, reject) => {
-            this.db.all(sql, [id_utente,id_servizio], (err, rows) => {
+            this.db.all(sql, [id_utente,id_servizio], (err, row) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(rows);
+                    resolve(row);
+                }
+            });
+        });
+    }
+
+    posti(ID) {
+        const sql = `UPDATE Servizi SET posti_disponibili = posti_disponibili + 1 WHERE ID = ? AND posti_disponibili > 0`;
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [ID], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+    eliminaPrenotazioni(id_servizio , id_utente) {
+        const sql = `DELETE FROM Prenotazioni WHERE ID_utente = ? AND ID_servizio = ?`;
+        return new Promise((resolve, reject) => {
+            this.db.run(sql, [id_servizio , id_utente], function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
                 }
             });
         });
