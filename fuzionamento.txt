@@ -1,0 +1,15 @@
+Credenziali sito:
+	- utente: 		email: aaaa@gmail.com    Password: delfino.
+                    email: cccc@gmail.com    Password: leone2
+	
+
+    - coach:        email: bbbb@gmail.com    Password: delfino
+
+
+Per farlo partire da terminale:
+Entrare nella cartella "web" e scrivere "node server.js"
+
+Link sito web:
+https://www.youtube.com/watch?v=HJajGJ865Kg
+
+
