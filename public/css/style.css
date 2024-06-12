@@ -89,9 +89,7 @@ h5 {
     text-align: right;
 }
 
-.product {
-    margin-bottom: 2rem;
-}
+
 
 /****** Card ******/
 
@@ -180,4 +178,47 @@ img[src$="yoga.png"] {
         border-bottom-left-radius: 16px;
         border-bottom-right-radius: 16px;
     }
+}
+
+
+.product {
+    max-height: 600px;
+}
+
+.product_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.product_title {
+    margin-top: 2rem;
+}
+
+.product_content {
+    flex-grow: 1;
+}
+
+.product_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 15px;
+}
+
+#iniziale{
+    margin-top: 20px;
+}
+
+.body_privacy {
+    font-family: Arial, sans-serif;
 }
