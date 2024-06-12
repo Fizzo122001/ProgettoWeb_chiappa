@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<head>
-    <%- include('head') %>
-</head>
+<%- include('head') %>
 
-<body class="gradient-custom">
-    <%- include("header", { authenticated, title, prodotti, coach}) %>
+    <body class="gradient-custom">
+        <%- include("header", { authenticated, title, prodotti, coach}) %>
 
-        <main>
-            <div class="text-center mt-4 mb-2">
-                <h4>Esplora le nostre attrezzature fitness</h4>
-            </div>
-            <div class="container mb-4">
-                <div class="row">
-                    <% prodotti.forEach(function(product) { %>
-                        <div id="card-attrezzatura" class="p-3 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="/image/<%= product.immagine %>"
-                                    alt="<%= product.nome %>">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <%= product.nome %>
-                                    </h4>
-                                    <p class="card-text">Prezzo: €<%= product.prezzo.toFixed(2) %>/h
-                                    </p>
-                                    <a href="javascript:aggiungi(<%= product.ID %>, <%= product.prezzo %>, '<%= product.nome %>','/image/<%= product.immagine %>')"
-                                        class="btn btn-warning" id="messaggio">Aggiungi al carrello</a>
+            <main>
+                <div class="text-center mt-4 mb-2">
+                    <h4>Esplora le nostre attrezzature fitness</h4>
+                </div>
+                <div class="container mb-4">
+                    <div class="row">
+                        <% prodotti.forEach(function(product) { %>
+                            <div id="card-attrezzatura" class="p-3 col-md-3">
+                                <div class="card">
+                                    <img class="card-img-top" src="/image/<%= product.immagine %>"
+                                        alt="<%= product.nome %>">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <%= product.nome %>
+                                        </h4>
+                                        <p class="card-text">Prezzo: €<%= product.prezzo.toFixed(2) %>/h
+                                        </p>
+                                        <a href="javascript:aggiungi(<%= product.ID %>, <%= product.prezzo %>, '<%= product.nome %>','/image/<%= product.immagine %>')"
+                                            class="btn btn-warning" id="messaggio">Aggiungi al carrello</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <% }); %>
+                            <% }); %>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-        <footer>
-            <%- include('footer') %>
-        </footer>
+            <footer>
+                <%- include('footer') %>
+            </footer>
 
-        <script>
-            inizializza();
-        </script>
-        <script src="/js/carrello.js"></script>
-</body>
+            <script>
+                inizializza();
+            </script>
+            <script src="/js/carrello.js"></script>
+    </body>
 
 </html>

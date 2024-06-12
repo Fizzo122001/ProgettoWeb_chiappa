@@ -261,10 +261,10 @@ class DataBase {
         });
     }
 
-    eliminaPrenotazioni(id_servizio , id_utente) {
+    eliminaPrenotazioni(id_utente ,id_servizio) {
         const sql = `DELETE FROM Prenotazioni WHERE ID_utente = ? AND ID_servizio = ?`;
         return new Promise((resolve, reject) => {
-            this.db.run(sql, [id_servizio , id_utente], function (err) {
+            this.db.run(sql, [id_utente , id_servizio], function (err) {
                 if (err) {
                     reject(err);
                 } else {
