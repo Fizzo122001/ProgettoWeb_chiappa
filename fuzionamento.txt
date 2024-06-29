@@ -1,15 +1,16 @@
 Credenziali sito:
 	- utente: 		email: aaaa@gmail.com    Password: delfino.
                     email: cccc@gmail.com    Password: leone2
+                    email: dddd@gmail.com    Password: 123456
 	
 
     - coach:        email: bbbb@gmail.com    Password: delfino
 
 
 Per farlo partire da terminale:
-Entrare nella cartella "web" e scrivere "node server.js"
+Entrare nella cartella "web" e scrivere "node server.js" oppure "node server"
 
-Link sito web:
+Link sito web dove viene spiegato il funzionamento:
 https://www.youtube.com/watch?v=HJajGJ865Kg
 
 
